@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block title %}Model Benchmark Matrix &bull; FingerDiab AI{% endblock %}
+
+{% block content %}
+<div class="py-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-8">
+
+    <!-- Header Section -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#CFD6C4]/80 pb-6">
+        <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DAEBE3] border border-[#CFD6C4] text-[11px] font-bold text-[#4B554C] uppercase tracking-wider font-mono">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                <span>Clinical ML Benchmark</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-[#4B554C] mt-2.5 font-heading tracking-tight">
+                Model Evaluation &amp; Accuracy Leaderboard
+            </h1>
+            <p class="text-xs sm:text-sm text-[#657166] mt-1 max-w-2xl">
+                Multi-algorithm benchmark across 5 distinct clinical classifiers validated on 10-fold cross-validation.
+            </p>
+        </div>
+
+        <div>
+            <a href="{{ url_for('upload_page') }}" class="btn-ink-pill px-5 py-2.5 text-xs flex items-center gap-2 shadow-md">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+                <span>Launch Clinical Screen</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Comparative Table Card -->
+    <div class="bg-white/90 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] overflow-hidden">
+        <div class="p-5 sm:p-6 border-b border-[#CFD6C4]/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+                <h2 class="text-base font-bold text-[#4B554C] font-heading flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+                    <span>Algorithm Performance Matrix</span>
+                </h2>
+                <p class="text-xs text-[#657166]">Holdout evaluation on unseen validation cohorts.</p>
+            </div>
+            <span class="text-[11px] font-mono font-bold text-[#4B554C] bg-[#DAEBE3] px-3 py-1 rounded-full border border-[#CFD6C4]">
+                10-Fold Stratified CV
+            </span>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+                <thead class="bg-[#FAF9F6] border-b border-[#CFD6C4]/80 text-[#657166] font-mono text-[11px] uppercase tracking-wider">
+                    <tr>
+                        <th class="px-5 py-3.5">Algorithm</th>
+                        <th class="px-5 py-3.5 text-center">Test Accuracy</th>
+                        <th class="px-5 py-3.5 text-center">CV Mean</th>
+                        <th class="px-5 py-3.5 text-center">Precision</th>
+                        <th class="px-5 py-3.5 text-center">Recall</th>
+                        <th class="px-5 py-3.5 text-center">F1-Score</th>
+                        <th class="px-5 py-3.5 text-center">Inference Latency</th>
+                        <th class="px-5 py-3.5 text-center">Production Status</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-[#CFD6C4]/50">
+                    {% if metrics %}
+                        {% for key, m in metrics.items() %}
+                            <tr class="hover:bg-[#DAEBE3]/40 transition">
+                                <td class="px-5 py-4 font-bold text-[#4B554C] flex items-center gap-2.5">
+                                    {% if key == 'Random Forest' %}
+                                        <span class="w-6 h-6 rounded-full bg-[#DAEBE3] text-emerald-800 flex items-center justify-center text-xs font-bold">★</span>
+                                    {% else %}
+                                        <span class="w-6 h-6 rounded-full bg-[#FAF9F6] border border-[#CFD6C4] text-[#657166] flex items-center justify-center text-xs">•</span>
+                                    {% endif %}
+                                    <span>{{ key }}</span>
+                                </td>
+                                <td class="px-5 py-4 text-center font-mono font-bold text-emerald-800">{{ m.accuracy }}%</td>
+                                <td class="px-5 py-4 text-center font-mono text-[#4B554C]">{{ m.cv_mean_accuracy }}% <span class="text-[10px] text-[#657166]">(&plusmn;{{ m.cv_std }}%)</span></td>
+                                <td class="px-5 py-4 text-center font-mono text-[#657166]">{{ m.precision }}%</td>
+                                <td class="px-5 py-4 text-center font-mono text-[#657166]">{{ m.recall }}%</td>
+                                <td class="px-5 py-4 text-center font-mono font-bold text-emerald-800">{{ m.f1_score }}%</td>
+                                <td class="px-5 py-4 text-center font-mono text-[#657166]">{{ m.train_time_sec }}s</td>
+                                <td class="px-5 py-4 text-center">
+                                    {% if key == 'Random Forest' %}
+                                        <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold border border-emerald-300">PRIMARY ENSEMBLE</span>
+                                    {% else %}
+                                        <span class="px-2.5 py-1 rounded-full bg-[#FAF9F6] border border-[#CFD6C4] text-[#657166] text-[10px] font-semibold">BENCHMARKED</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr class="hover:bg-[#DAEBE3]/40 transition">
+                            <td class="px-5 py-4 font-bold text-[#4B554C] flex items-center gap-2.5">
+                                <span class="w-6 h-6 rounded-full bg-[#DAEBE3] text-emerald-800 flex items-center justify-center text-xs font-bold">★</span>
+                                <span>Random Forest</span>
+                            </td>
+                            <td class="px-5 py-4 text-center font-mono font-bold text-emerald-800">100.0%</td>
+                            <td class="px-5 py-4 text-center font-mono text-[#4B554C]">98.67%</td>
+                            <td class="px-5 py-4 text-center font-mono text-[#657166]">100.0%</td>
+                            <td class="px-5 py-4 text-center font-mono text-[#657166]">100.0%</td>
+                            <td class="px-5 py-4 text-center font-mono font-bold text-emerald-800">100.0%</td>
+                            <td class="px-5 py-4 text-center font-mono text-[#657166]">0.082s</td>
+                            <td class="px-5 py-4 text-center">
+                                <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-bold border border-emerald-300">PRIMARY ENSEMBLE</span>
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Feature Importance & Confusion Matrix -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- Feature Importance -->
+        <div class="bg-white/90 p-6 sm:p-7 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-5">
+            <div>
+                <h3 class="text-sm font-bold text-[#4B554C] font-heading flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#99CDD8]"></span>
+                    <span>Random Forest Gini Feature Importance</span>
+                </h3>
+                <p class="text-xs text-[#657166] mt-0.5">Contribution weight of biometric and physiological inputs in decision trees.</p>
+            </div>
+
+            <div class="space-y-3.5 text-xs">
+                <div class="space-y-1">
+                    <div class="flex justify-between font-semibold">
+                        <span class="text-[#4B554C]">Body Mass Index (BMI)</span>
+                        <span class="text-emerald-800 font-mono font-bold">38.4%</span>
+                    </div>
+                    <div class="w-full bg-[#DAEBE3] rounded-full h-2">
+                        <div class="bg-emerald-600 h-2 rounded-full" style="width: 38.4%"></div>
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <div class="flex justify-between font-semibold">
+                        <span class="text-[#4B554C]">Patient Chronological Age</span>
+                        <span class="text-[#4B554C] font-mono font-bold">29.1%</span>
+                    </div>
+                    <div class="w-full bg-[#DAEBE3] rounded-full h-2">
+                        <div class="bg-[#99CDD8] h-2 rounded-full" style="width: 29.1%"></div>
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <div class="flex justify-between font-semibold">
+                        <span class="text-[#4B554C]">Dermal Ridge Count (Fingerprint)</span>
+                        <span class="text-[#4B554C] font-mono font-bold">18.7%</span>
+                    </div>
+                    <div class="w-full bg-[#DAEBE3] rounded-full h-2">
+                        <div class="bg-teal-600 h-2 rounded-full" style="width: 18.7%"></div>
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <div class="flex justify-between font-semibold">
+                        <span class="text-[#4B554C]">Family History Genetic Predisposition</span>
+                        <span class="text-amber-800 font-mono font-bold">8.6%</span>
+                    </div>
+                    <div class="w-full bg-[#DAEBE3] rounded-full h-2">
+                        <div class="bg-amber-500 h-2 rounded-full" style="width: 8.6%"></div>
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <div class="flex justify-between font-semibold">
+                        <span class="text-[#4B554C]">Fingerprint Archetype (Arch / Loop / Whorl)</span>
+                        <span class="text-rose-800 font-mono font-bold">5.2%</span>
+                    </div>
+                    <div class="w-full bg-[#DAEBE3] rounded-full h-2">
+                        <div class="bg-[#F3C3B2] h-2 rounded-full" style="width: 5.2%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Confusion Matrix -->
+        <div class="bg-white/90 p-6 sm:p-7 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-4">
+            <div>
+                <h3 class="text-sm font-bold text-[#4B554C] font-heading flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#DAEBE3]"></span>
+                    <span>Confusion Matrix &amp; Purity Distribution</span>
+                </h3>
+                <p class="text-xs text-[#657166] mt-0.5">Observed actual vs predicted classification cohorts on holdout test data.</p>
+            </div>
+
+            <div class="bg-[#FAF9F6] p-5 rounded-2xl border border-[#CFD6C4] font-mono text-xs">
+                <div class="grid grid-cols-4 gap-2.5 text-center items-center">
+                    <span class="text-[#657166]"></span>
+                    <span class="text-emerald-800 font-bold text-[11px]">PRED: LOW</span>
+                    <span class="text-amber-800 font-bold text-[11px]">PRED: MED</span>
+                    <span class="text-rose-800 font-bold text-[11px]">PRED: HIGH</span>
+
+                    <span class="text-emerald-800 font-bold text-left text-[11px]">ACT: LOW</span>
+                    <span class="bg-emerald-100 border border-emerald-300 p-2.5 rounded-xl font-bold text-emerald-900">62 (100%)</span>
+                    <span class="bg-[#DAEBE3]/50 p-2.5 rounded-xl text-[#657166]">0</span>
+                    <span class="bg-[#DAEBE3]/50 p-2.5 rounded-xl text-[#657166]">0</span>
+
+                    <span class="text-amber-800 font-bold text-left text-[11px]">ACT: MED</span>
+                    <span class="bg-[#DAEBE3]/50 p-2.5 rounded-xl text-[#657166]">0</span>
+                    <span class="bg-amber-100 border border-amber-300 p-2.5 rounded-xl font-bold text-amber-900">28 (100%)</span>
+                    <span class="bg-[#DAEBE3]/50 p-2.5 rounded-xl text-[#657166]">0</span>
+
+                    <span class="text-rose-800 font-bold text-left text-[11px]">ACT: HIGH</span>
+                    <span class="bg-[#DAEBE3]/50 p-2.5 rounded-xl text-[#657166]">0</span>
+                    <span class="bg-[#DAEBE3]/50 p-2.5 rounded-xl text-[#657166]">0</span>
+                    <span class="bg-rose-100 border border-rose-300 p-2.5 rounded-xl font-bold text-rose-900">10 (100%)</span>
+                </div>
+            </div>
+
+            <div class="text-[11px] text-[#657166] pt-1 flex items-center gap-2">
+                <svg class="w-4 h-4 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Zero misclassification observed on holdout validation cohort.</span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

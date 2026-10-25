@@ -1,0 +1,206 @@
+{
+    "Random Forest": {
+        "name": "Random Forest",
+        "accuracy": 100.0,
+        "precision": 100.0,
+        "recall": 100.0,
+        "f1_score": 100.0,
+        "cv_mean_accuracy": 99.1,
+        "cv_std": 0.58,
+        "train_time_sec": 0.1204,
+        "confusion_matrix": [
+            [
+                48,
+                0,
+                0
+            ],
+            [
+                0,
+                74,
+                0
+            ],
+            [
+                0,
+                0,
+                78
+            ]
+        ],
+        "classes": [
+            "high",
+            "low",
+            "medium"
+        ],
+        "feature_importance": {
+            "Fingerprint Type": 0.0152,
+            "Ridge Count": 0.2462,
+            "Age": 0.248,
+            "BMI": 0.2727,
+            "Family History": 0.2179
+        }
+    },
+    "Gradient Boosting": {
+        "name": "Gradient Boosting",
+        "accuracy": 99.0,
+        "precision": 99.04,
+        "recall": 99.0,
+        "f1_score": 99.0,
+        "cv_mean_accuracy": 99.2,
+        "cv_std": 0.81,
+        "train_time_sec": 0.2351,
+        "confusion_matrix": [
+            [
+                48,
+                0,
+                0
+            ],
+            [
+                0,
+                74,
+                0
+            ],
+            [
+                2,
+                0,
+                76
+            ]
+        ],
+        "classes": [
+            "high",
+            "low",
+            "medium"
+        ],
+        "feature_importance": null
+    },
+    "Support Vector Machine (SVM)": {
+        "name": "Support Vector Machine (SVM)",
+        "accuracy": 69.0,
+        "precision": 69.15,
+        "recall": 69.0,
+        "f1_score": 69.07,
+        "cv_mean_accuracy": 62.8,
+        "cv_std": 2.66,
+        "train_time_sec": 0.1256,
+        "confusion_matrix": [
+            [
+                34,
+                0,
+                14
+            ],
+            [
+                0,
+                56,
+                18
+            ],
+            [
+                13,
+                17,
+                48
+            ]
+        ],
+        "classes": [
+            "high",
+            "low",
+            "medium"
+        ],
+        "feature_importance": null
+    },
+    "Decision Tree": {
+        "name": "Decision Tree",
+        "accuracy": 99.5,
+        "precision": 99.51,
+        "recall": 99.5,
+        "f1_score": 99.5,
+        "cv_mean_accuracy": 99.4,
+        "cv_std": 0.58,
+        "train_time_sec": 0.004,
+        "confusion_matrix": [
+            [
+                48,
+                0,
+                0
+            ],
+            [
+                0,
+                74,
+                0
+            ],
+            [
+                1,
+                0,
+                77
+            ]
+        ],
+        "classes": [
+            "high",
+            "low",
+            "medium"
+        ],
+        "feature_importance": null
+    },
+    "K-Nearest Neighbors (KNN)": {
+        "name": "K-Nearest Neighbors (KNN)",
+        "accuracy": 69.5,
+        "precision": 69.14,
+        "recall": 69.5,
+        "f1_score": 69.23,
+        "cv_mean_accuracy": 62.9,
+        "cv_std": 2.33,
+        "train_time_sec": 0.003,
+        "confusion_matrix": [
+            [
+                34,
+                0,
+                14
+            ],
+            [
+                2,
+                60,
+                12
+            ],
+            [
+                14,
+                19,
+                45
+            ]
+        ],
+        "classes": [
+            "high",
+            "low",
+            "medium"
+        ],
+        "feature_importance": null
+    },
+    "Logistic Regression": {
+        "name": "Logistic Regression",
+        "accuracy": 78.5,
+        "precision": 78.29,
+        "recall": 78.5,
+        "f1_score": 78.29,
+        "cv_mean_accuracy": 78.3,
+        "cv_std": 3.23,
+        "train_time_sec": 0.4094,
+        "confusion_matrix": [
+            [
+                42,
+                0,
+                6
+            ],
+            [
+                0,
+                62,
+                12
+            ],
+            [
+                10,
+                15,
+                53
+            ]
+        ],
+        "classes": [
+            "high",
+            "low",
+            "medium"
+        ],
+        "feature_importance": null
+    }
+}

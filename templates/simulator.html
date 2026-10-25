@@ -1,0 +1,306 @@
+{% extends "base.html" %}
+
+{% block title %}Real-Time Clinical Risk Simulator &bull; FingerDiab AI{% endblock %}
+
+{% block content %}
+<div class="py-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8">
+
+    <!-- Header Section -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#CFD6C4]/80 pb-6">
+        <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DAEBE3] border border-[#CFD6C4] text-[11px] font-bold text-[#4B554C] uppercase tracking-wider font-mono">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                <span>Interactive Clinical Sandbox</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-[#4B554C] mt-2.5 font-heading tracking-tight">
+                Real-Time Clinical Risk Simulator
+            </h1>
+            <p class="text-xs sm:text-sm text-[#657166] mt-1 max-w-2xl">
+                Dynamic sensitivity analysis environment. Adjust biometric parameters and physiological indicators to observe instantaneous ML classification response.
+            </p>
+        </div>
+
+        <div>
+            <a href="{{ url_for('upload_page') }}" class="btn-ink-pill px-5 py-2.5 text-xs flex items-center gap-2 shadow-md">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+                <span>Live Camera/Optical Scan</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Simulator Interactive Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+        <!-- Left Controls (7 cols) -->
+        <div class="lg:col-span-7 bg-white/90 p-6 sm:p-7 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-6">
+
+            <div class="flex justify-between items-center border-b border-[#CFD6C4]/80 pb-3">
+                <span class="text-xs font-mono font-bold text-[#4B554C] uppercase tracking-wider flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-[#99CDD8]"></span>
+                    <span>Biometric &amp; Vitals Regulators</span>
+                </span>
+                <span class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-[#DAEBE3] text-[#4B554C] font-semibold border border-[#CFD6C4]">
+                    LIVE SYNC
+                </span>
+            </div>
+
+            <!-- Fingerprint Pattern Selector -->
+            <div class="space-y-2">
+                <label class="block text-xs font-bold text-[#4B554C]">1. Dermatoglyphic Archetype Pattern</label>
+                <div class="grid grid-cols-3 gap-2.5 text-xs font-heading">
+                    <button type="button" onclick="setSimFp('arch')" id="simFp_arch" class="sim-fp-btn py-2.5 px-2 rounded-2xl bg-white border border-[#CFD6C4] text-[#657166] font-semibold transition hover:border-[#4B554C]">
+                        Arch
+                    </button>
+                    <button type="button" onclick="setSimFp('loop')" id="simFp_loop" class="sim-fp-btn py-2.5 px-2 rounded-2xl bg-[#DAEBE3] border border-[#CFD6C4] text-[#4B554C] font-bold transition shadow-sm">
+                        Loop
+                    </button>
+                    <button type="button" onclick="setSimFp('whorl')" id="simFp_whorl" class="sim-fp-btn py-2.5 px-2 rounded-2xl bg-white border border-[#CFD6C4] text-[#657166] font-semibold transition hover:border-[#4B554C]">
+                        Whorl
+                    </button>
+                </div>
+            </div>
+
+            <!-- Ridge Count Slider -->
+            <div class="space-y-2">
+                <div class="flex justify-between text-xs font-semibold">
+                    <span class="text-[#4B554C]">2. Dermal Ridge Count:</span>
+                    <span id="valRidgeCount" class="font-mono text-[#4B554C] font-bold bg-[#DAEBE3] px-2 py-0.5 rounded-md border border-[#CFD6C4]">18 Ridges</span>
+                </div>
+                <input type="range" id="simRidgeCount" min="4" max="30" value="18" class="w-full h-2 bg-[#DAEBE3] rounded-lg appearance-none cursor-pointer accent-[#4B554C]">
+                <div class="flex justify-between text-[10px] text-[#657166] font-mono">
+                    <span>4 (Sparse Hypoplasia)</span>
+                    <span>16 (Mean)</span>
+                    <span>30 (Hyper-Dense)</span>
+                </div>
+            </div>
+
+            <!-- Age Slider -->
+            <div class="space-y-2">
+                <div class="flex justify-between text-xs font-semibold">
+                    <span class="text-[#4B554C]">3. Patient Chronological Age:</span>
+                    <span id="valAge" class="font-mono text-[#4B554C] font-bold bg-[#DAEBE3] px-2 py-0.5 rounded-md border border-[#CFD6C4]">35 Years</span>
+                </div>
+                <input type="range" id="simAge" min="18" max="75" value="35" class="w-full h-2 bg-[#DAEBE3] rounded-lg appearance-none cursor-pointer accent-[#4B554C]">
+                <div class="flex justify-between text-[10px] text-[#657166] font-mono">
+                    <span>18 Years</span>
+                    <span>35 (Baseline)</span>
+                    <span>75 Years</span>
+                </div>
+            </div>
+
+            <!-- BMI Slider -->
+            <div class="space-y-2">
+                <div class="flex justify-between text-xs font-semibold">
+                    <span class="text-[#4B554C]">4. Body Mass Index (BMI):</span>
+                    <span id="valBmi" class="font-mono text-[#4B554C] font-bold bg-[#DAEBE3] px-2 py-0.5 rounded-md border border-[#CFD6C4]">23.5 kg/m²</span>
+                </div>
+                <input type="range" id="simBmi" min="15.0" max="42.0" step="0.5" value="23.5" class="w-full h-2 bg-[#DAEBE3] rounded-lg appearance-none cursor-pointer accent-[#4B554C]">
+                <div class="flex justify-between text-[10px] text-[#657166] font-mono">
+                    <span>15.0 (Lean)</span>
+                    <span>24.0 (Normal)</span>
+                    <span>42.0 (Obese)</span>
+                </div>
+            </div>
+
+            <!-- Family History Toggle -->
+            <div class="space-y-2">
+                <label class="block text-xs font-bold text-[#4B554C]">5. Family History of Diabetes</label>
+                <div class="grid grid-cols-2 gap-2 text-xs font-heading">
+                    <button type="button" onclick="setSimFh('no')" id="simFh_no" class="sim-fh-btn py-2.5 rounded-2xl bg-[#DAEBE3] border border-[#CFD6C4] text-[#4B554C] font-bold transition shadow-sm">
+                        No (Negative)
+                    </button>
+                    <button type="button" onclick="setSimFh('yes')" id="simFh_yes" class="sim-fh-btn py-2.5 rounded-2xl bg-white border border-[#CFD6C4] text-[#657166] font-semibold transition hover:border-[#4B554C]">
+                        Yes (First-Degree Relative)
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Output HUD (5 cols) -->
+        <div class="lg:col-span-5 bg-white/90 p-6 sm:p-7 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-6">
+
+            <div class="flex justify-between items-center border-b border-[#CFD6C4]/80 pb-3">
+                <span class="text-xs font-mono font-bold text-[#4B554C] flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                    <span>INSTANT_PREDICTION_ENGINE</span>
+                </span>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#DAEBE3] text-emerald-900 font-bold border border-[#CFD6C4]">
+                    ACTIVE
+                </span>
+            </div>
+
+            <!-- Risk Status Badge -->
+            <div id="simRiskBadgeContainer" class="p-6 rounded-[24px] border text-center transition bg-[#DAEBE3] border-[#CFD6C4] space-y-2">
+                <span class="text-[10px] font-mono uppercase tracking-wider text-[#657166]">Predicted Risk Classification</span>
+                <h3 id="simRiskResult" class="text-2xl font-extrabold text-[#4B554C] font-heading tracking-tight">LOW RISK</h3>
+                <div id="simScoreText" class="font-mono text-sm font-bold text-[#4B554C]">Score: 8.3 / 100</div>
+                <span id="simRiskDesc" class="block text-xs text-[#657166] leading-relaxed pt-1">
+                    Optimal metabolic parameters. Maintain balanced nutritional hygiene and activity.
+                </span>
+            </div>
+
+            <!-- Class Probabilities -->
+            <div class="space-y-3 text-xs">
+                <span class="block font-bold text-[#4B554C] uppercase tracking-wider text-[11px] font-mono">Calibrated Probability Breakdown</span>
+
+                <!-- Low -->
+                <div class="space-y-1">
+                    <div class="flex justify-between text-xs font-semibold">
+                        <span class="text-[#4B554C]">Lower Risk Tier:</span>
+                        <span id="probLow" class="font-mono text-emerald-800 font-bold">85%</span>
+                    </div>
+                    <div class="w-full bg-[#DAEBE3] rounded-full h-2">
+                        <div id="barLow" class="bg-emerald-600 h-2 rounded-full transition-all duration-300" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <!-- Medium -->
+                <div class="space-y-1">
+                    <div class="flex justify-between text-xs font-semibold">
+                        <span class="text-[#4B554C]">Intermediate Risk Tier:</span>
+                        <span id="probMed" class="font-mono text-amber-800 font-bold">12%</span>
+                    </div>
+                    <div class="w-full bg-[#DAEBE3] rounded-full h-2">
+                        <div id="barMed" class="bg-amber-500 h-2 rounded-full transition-all duration-300" style="width: 12%"></div>
+                    </div>
+                </div>
+
+                <!-- High -->
+                <div class="space-y-1">
+                    <div class="flex justify-between text-xs font-semibold">
+                        <span class="text-[#4B554C]">Elevated Risk Tier:</span>
+                        <span id="probHigh" class="font-mono text-rose-800 font-bold">3%</span>
+                    </div>
+                    <div class="w-full bg-[#DAEBE3] rounded-full h-2">
+                        <div id="barHigh" class="bg-rose-500 h-2 rounded-full transition-all duration-300" style="width: 3%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-2 border-t border-[#CFD6C4]/80">
+                <a href="{{ url_for('upload_page') }}" class="w-full btn-ink-pill py-3 text-xs font-bold transition flex items-center justify-center gap-2 shadow-md">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    <span>Perform Real Biometric Scan</span>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Simulator Script -->
+<script>
+    let currentSimFp = 'loop';
+    let currentSimFh = 'no';
+
+    function setSimFp(type) {
+        currentSimFp = type;
+        document.querySelectorAll('.sim-fp-btn').forEach(b => {
+            b.className = 'sim-fp-btn py-2.5 px-2 rounded-2xl bg-white border border-[#CFD6C4] text-[#657166] font-semibold transition hover:border-[#4B554C]';
+        });
+        document.getElementById(`simFp_${type}`).className = 'sim-fp-btn py-2.5 px-2 rounded-2xl bg-[#DAEBE3] border border-[#CFD6C4] text-[#4B554C] font-bold transition shadow-sm';
+        runSimulationInference();
+    }
+
+    function setSimFh(val) {
+        currentSimFh = val;
+        document.querySelectorAll('.sim-fh-btn').forEach(b => {
+            b.className = 'sim-fh-btn py-2.5 rounded-2xl bg-white border border-[#CFD6C4] text-[#657166] font-semibold transition hover:border-[#4B554C]';
+        });
+        document.getElementById(`simFh_${val}`).className = 'sim-fh-btn py-2.5 rounded-2xl bg-[#DAEBE3] border border-[#CFD6C4] text-[#4B554C] font-bold transition shadow-sm';
+        runSimulationInference();
+    }
+
+    document.getElementById('simRidgeCount').addEventListener('input', function() {
+        document.getElementById('valRidgeCount').textContent = `${this.value} Ridges`;
+        runSimulationInference();
+    });
+
+    document.getElementById('simAge').addEventListener('input', function() {
+        document.getElementById('valAge').textContent = `${this.value} Years`;
+        runSimulationInference();
+    });
+
+    document.getElementById('simBmi').addEventListener('input', function() {
+        document.getElementById('valBmi').textContent = `${parseFloat(this.value).toFixed(1)} kg/m²`;
+        runSimulationInference();
+    });
+
+    function runSimulationInference() {
+        const rc = parseInt(document.getElementById('simRidgeCount').value);
+        const age = parseInt(document.getElementById('simAge').value);
+        const bmi = parseFloat(document.getElementById('simBmi').value);
+
+        fetch('/api/predict_instant', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                fingerprint_type: currentSimFp,
+                ridge_count: rc,
+                age: age,
+                bmi: bmi,
+                family_history: currentSimFh,
+                model: 'Auto-Select (AI Metric-Driven Optimizer)'
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            const isSuccess = data.success === true || data.status === 'success';
+            if (isSuccess) {
+                const pred = data.prediction || data;
+                const riskTier = (pred.risk_tier || pred.risk || 'low').toLowerCase();
+                const container = document.getElementById('simRiskBadgeContainer');
+                const title = document.getElementById('simRiskResult');
+                const desc = document.getElementById('simRiskDesc');
+                const scoreText = document.getElementById('simScoreText');
+
+                if (pred.risk_score !== undefined) {
+                    scoreText.textContent = `Score: ${parseFloat(pred.risk_score).toFixed(1)} / 100`;
+                }
+
+                if (riskTier === 'high') {
+                    container.className = 'p-6 rounded-[24px] border text-center transition bg-[#F3C3B2]/50 border-[#F3C3B2] space-y-2';
+                    title.textContent = 'ELEVATED RISK';
+                    title.className = 'text-2xl font-extrabold text-[#4B554C] font-heading tracking-tight';
+                    desc.textContent = 'High susceptibility detected. Dietary glycemic modification and clinical follow-up advised.';
+                } else if (riskTier === 'medium') {
+                    container.className = 'p-6 rounded-[24px] border text-center transition bg-[#FDE8D3] border-[#CFD6C4] space-y-2';
+                    title.textContent = 'INTERMEDIATE RISK';
+                    title.className = 'text-2xl font-extrabold text-[#4B554C] font-heading tracking-tight';
+                    desc.textContent = 'Moderate indicators present. Dietary glycemic load management recommended.';
+                } else {
+                    container.className = 'p-6 rounded-[24px] border text-center transition bg-[#DAEBE3] border-[#CFD6C4] space-y-2';
+                    title.textContent = 'LOWER RISK';
+                    title.className = 'text-2xl font-extrabold text-[#4B554C] font-heading tracking-tight';
+                    desc.textContent = 'Optimal metabolic parameters. Maintain balanced nutritional hygiene and activity.';
+                }
+
+                const probs = pred.class_probabilities || data.probabilities || {};
+                const pLow = Math.round(probs.low || 0);
+                const pMed = Math.round(probs.medium || 0);
+                const pHigh = Math.round(probs.high || 0);
+
+                document.getElementById('probLow').textContent = `${pLow}%`;
+                document.getElementById('barLow').style.width = `${pLow}%`;
+
+                document.getElementById('probMed').textContent = `${pMed}%`;
+                document.getElementById('barMed').style.width = `${pMed}%`;
+
+                document.getElementById('probHigh').textContent = `${pHigh}%`;
+                document.getElementById('barHigh').style.width = `${pHigh}%`;
+            }
+        })
+        .catch(err => console.error(err));
+    }
+
+    // Trigger initial simulation
+    runSimulationInference();
+</script>
+{% endblock %}

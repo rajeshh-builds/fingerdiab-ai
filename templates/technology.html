@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}5-Stage Computer Vision Pipeline &bull; FingerDiab AI{% endblock %}
+
+{% block content %}
+<div class="py-10 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8">
+
+    <!-- Header Section -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#CFD6C4]/80 pb-6">
+        <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DAEBE3] border border-[#CFD6C4] text-[11px] font-bold text-[#4B554C] uppercase tracking-wider font-mono">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                <span>OpenCV &amp; Morphological Engineering</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-[#4B554C] mt-2.5 font-heading tracking-tight">
+                5-Stage Computer Vision Architecture
+            </h1>
+            <p class="text-xs sm:text-sm text-[#657166] mt-1 max-w-2xl">
+                Deterministic mathematical pipeline transforming raw epidermal biometric photographs into structured clinical feature vectors.
+            </p>
+        </div>
+
+        <div>
+            <a href="{{ url_for('upload_page') }}" class="btn-ink-pill px-5 py-2.5 text-xs flex items-center gap-2 shadow-md">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+                <span>Upload Sample Scan</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 5 Stages Stack -->
+    <div class="space-y-4">
+
+        <!-- Stage 1 -->
+        <div class="bg-white/90 p-6 sm:p-7 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-3">
+            <div class="flex items-center space-x-3">
+                <span class="w-8 h-8 rounded-2xl bg-[#DAEBE3] text-emerald-900 font-mono font-bold flex items-center justify-center text-xs border border-[#CFD6C4]">01</span>
+                <div>
+                    <h3 class="text-base font-bold text-[#4B554C] font-heading">Grayscale Optical Normalization</h3>
+                    <span class="text-[10px] font-mono text-[#657166]">Color Dimension Flattening &bull; 8-Bit Luminance Channel</span>
+                </div>
+            </div>
+            <p class="text-xs sm:text-sm text-[#657166] leading-relaxed pl-11">
+                The input RGB or RGBA optical image is converted to single-channel 8-bit luminance using ITU-R 601-2 luma coefficients ($Y = 0.299R + 0.587G + 0.114B$). High-frequency noise is suppressed using a Gaussian blur kernel ($k=5$) while preserving epidermal boundary gradients.
+            </p>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="bg-white/90 p-6 sm:p-7 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-3">
+            <div class="flex items-center space-x-3">
+                <span class="w-8 h-8 rounded-2xl bg-[#99CDD8]/40 text-[#4B554C] font-mono font-bold flex items-center justify-center text-xs border border-[#CFD6C4]">02</span>
+                <div>
+                    <h3 class="text-base font-bold text-[#4B554C] font-heading">CLAHE (Contrast Limited Adaptive Histogram Equalization)</h3>
+                    <span class="text-[10px] font-mono text-[#657166]">Sub-Tile Local Dynamic Range Amplification</span>
+                </div>
+            </div>
+            <p class="text-xs sm:text-sm text-[#657166] leading-relaxed pl-11">
+                Local illumination variances caused by uneven sensor contact are mitigated by dividing the image into $8 \times 8$ contextual tiles. Contrast amplification is capped at a clip limit of $2.0$ to prevent optical grain amplification while enhancing faint dermatoglyphic ridge valleys.
+            </p>
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="bg-white/90 p-6 sm:p-7 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-3">
+            <div class="flex items-center space-x-3">
+                <span class="w-8 h-8 rounded-2xl bg-[#FDE8D3] text-[#4B554C] font-mono font-bold flex items-center justify-center text-xs border border-[#CFD6C4]">03</span>
+                <div>
+                    <h3 class="text-base font-bold text-[#4B554C] font-heading">Adaptive Gaussian Binarization &amp; Valley Isolation</h3>
+                    <span class="text-[10px] font-mono text-[#657166]">Dynamic Threshold Segmentation &bull; Zero Hardcoding</span>
+                </div>
+            </div>
+            <p class="text-xs sm:text-sm text-[#657166] leading-relaxed pl-11">
+                Each pixel's threshold is calculated as a weighted Gaussian sum over its $11 \times 11$ neighborhood minus constant $C=2$. This cleanly isolates foreground epidermal ridges ($1$) from background dermal furrows ($0$), unaffected by global sensor exposure inconsistencies.
+            </p>
+        </div>
+
+        <!-- Stage 4 -->
+        <div class="bg-white/90 p-6 sm:p-7 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-3">
+            <div class="flex items-center space-x-3">
+                <span class="w-8 h-8 rounded-2xl bg-[#F3C3B2]/50 text-[#4B554C] font-mono font-bold flex items-center justify-center text-xs border border-[#CFD6C4]">04</span>
+                <div>
+                    <h3 class="text-base font-bold text-[#4B554C] font-heading">Zhang-Suen Morphological Skeletonization</h3>
+                    <span class="text-[10px] font-mono text-[#657166]">Medial Axis Ridge Thinning &bull; 1-Pixel Topological Network</span>
+                </div>
+            </div>
+            <p class="text-xs sm:text-sm text-[#657166] leading-relaxed pl-11">
+                The iterative two-pass Zhang-Suen thinning algorithm erodes ridge contours while preserving topological connectivity, resulting in a single-pixel wide skeleton network suitable for accurate ridge count and minutiae intersection detection.
+            </p>
+        </div>
+
+        <!-- Stage 5 -->
+        <div class="bg-white/90 p-6 sm:p-7 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-3">
+            <div class="flex items-center space-x-3">
+                <span class="w-8 h-8 rounded-2xl bg-[#DAEBE3] text-emerald-900 font-mono font-bold flex items-center justify-center text-xs border border-[#CFD6C4]">05</span>
+                <div>
+                    <h3 class="text-base font-bold text-[#4B554C] font-heading">Minutiae Extraction &amp; Crossing Number (CN)</h3>
+                    <span class="text-[10px] font-mono text-[#657166]">Rutovitz Topology Parsing &bull; Pattern Archetype Classification</span>
+                </div>
+            </div>
+            <p class="text-xs sm:text-sm text-[#657166] leading-relaxed pl-11">
+                Using 8-neighborhood Rutovitz crossing numbers, the system localizes ridge terminations (CN = 1) and bifurcations (CN = 3). Combined with contour curvature profiles, it classifies pattern archetypes (Arch, Loop, or Whorl) with calibrated feature confidence.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Return CTA -->
+    <div class="text-center pt-4">
+        <a href="{{ url_for('upload_page') }}" class="btn-ink-pill px-8 py-3.5 text-xs font-bold inline-flex items-center gap-2 shadow-lg">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            <span>Launch Biometric Extraction Pipeline</span>
+        </a>
+    </div>
+
+</div>
+{% endblock %}

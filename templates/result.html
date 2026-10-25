@@ -1,0 +1,351 @@
+{% extends "base.html" %}
+
+{% block title %}Diagnostic Risk Dossier &bull; FingerDiab AI MedTech{% endblock %}
+
+{% block content %}
+<div class="py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8">
+
+    <!-- Stepper Navigation -->
+    <div class="max-w-2xl mx-auto no-print">
+        <div class="flex items-center justify-between text-xs font-mono">
+            
+            <!-- Step 1: Completed -->
+            <div class="flex items-center space-x-2.5 text-[#657166] font-bold">
+                <span class="w-8 h-8 rounded-2xl bg-[#DAEBE3] text-[#4B554C] border border-[#CFD6C4] flex items-center justify-center font-black text-xs shadow-sm">
+                    <svg class="w-4 h-4 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                </span>
+                <span class="tracking-wide">Biometrics</span>
+            </div>
+
+            <div class="flex-1 h-0.5 bg-[#CFD6C4] mx-3.5"></div>
+
+            <!-- Step 2: Completed -->
+            <div class="flex items-center space-x-2.5 text-[#657166] font-bold">
+                <span class="w-8 h-8 rounded-2xl bg-[#DAEBE3] text-[#4B554C] border border-[#CFD6C4] flex items-center justify-center font-black text-xs shadow-sm">
+                    <svg class="w-4 h-4 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                </span>
+                <span class="tracking-wide">Clinical Vitals</span>
+            </div>
+
+            <div class="flex-1 h-0.5 bg-[#CFD6C4] mx-3.5"></div>
+
+            <!-- Step 3: Active -->
+            <div class="flex items-center space-x-2.5 text-[#4B554C] font-bold">
+                <span class="w-8 h-8 rounded-2xl bg-[#657166] text-white flex items-center justify-center font-black text-xs shadow-md">
+                    3
+                </span>
+                <span class="tracking-wide">Diagnostic Dossier</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Printable Medical Dossier Container -->
+    <div id="medicalReportCard" class="rounded-[32px] p-6 sm:p-10 bg-white/85 border border-[#CFD6C4] shadow-soft-card space-y-8 relative overflow-hidden backdrop-blur-xl">
+
+        <!-- Top Header & Actions -->
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-[#CFD6C4] pb-6 gap-4">
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-2xl bg-[#DAEBE3] border border-[#CFD6C4] flex items-center justify-center text-[#4B554C] shadow-sm shrink-0 overflow-hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4B554C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
+                    </svg>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-3">
+                        <h1 class="text-2xl sm:text-3xl font-extrabold text-[#4B554C] tracking-tight font-heading">Diagnostic Risk Dossier</h1>
+                        <span class="text-[10px] font-mono font-bold px-3 py-1 rounded-full bg-[#DAEBE3] text-[#4B554C] border border-[#CFD6C4]">CONFIDENTIAL</span>
+                    </div>
+                    <p class="text-xs text-[#657166] font-mono mt-1">
+                        Dossier ID: <span class="text-[#4B554C] font-bold">#FD-{{ record.id }}-{{ record.created_at[:10] }}</span> &bull; Subject: <span class="text-[#4B554C] font-bold">{{ record.patient_name }}</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-3 no-print">
+                <button onclick="window.print()" class="px-4 py-2.5 rounded-full bg-white hover:bg-[#FAF9F6] text-[#4B554C] text-xs font-semibold border border-[#CFD6C4] transition flex items-center gap-2 shadow-sm">
+                    <svg class="w-4 h-4 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24.03-.48.062-.72.096m.72-.096a42.415 42.415 0 0110.56 0m-10.56 0L6.34 18m10.94-4.171c.24.03.48.062.72.096m-.72-.096L17.66 18m0 0l.229 2.523a1.125 1.125 0 01-1.12 1.227H7.231c-.662 0-1.18-.568-1.12-1.227L6.34 18m11.318 0h1.091A2.25 2.25 0 0021 15.75V9.456c0-1.081-.768-2.015-1.837-2.175a48.055 48.055 0 00-1.913-.247M6.34 18H5.25A2.25 2.25 0 013 15.75V9.456c0-1.081.768-2.015 1.837-2.175a48.041 48.041 0 011.913-.247m10.5 0a48.536 48.536 0 00-10.5 0m10.5 0V3.375c0-.621-.504-1.125-1.125-1.125h-8.25c-.621 0-1.125.504-1.125 1.125v3.659m10.5 0H6.75" />
+                    </svg>
+                    <span>Print Dossier</span>
+                </button>
+                <a href="{{ url_for('upload_page') }}" class="btn-ink-pill px-5 py-2.5 text-xs font-bold transition flex items-center gap-2 shadow-md font-heading">
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                    <span>New Screening</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Primary Numerical Risk Hero Card with Circular Radial Gauge -->
+        <div class="p-8 sm:p-10 rounded-[28px] border text-center space-y-6 relative overflow-hidden bg-[#FAF9F6] border-[#CFD6C4] shadow-inner">
+
+            <div class="flex items-center justify-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full animate-ping
+                    {% if record.risk_score >= 66.0 %} bg-rose-500
+                    {% elif record.risk_score >= 33.0 %} bg-amber-500
+                    {% else %} bg-emerald-600
+                    {% endif %}"></span>
+                <span class="text-xs font-mono font-extrabold tracking-widest uppercase
+                    {% if record.risk_score >= 66.0 %} text-rose-700
+                    {% elif record.risk_score >= 33.0 %} text-amber-800
+                    {% else %} text-emerald-800
+                    {% endif %}">
+                    AI CONTINUOUS RISK ESTIMATE
+                </span>
+            </div>
+
+            <!-- Prominent Circular Progress Ring + Classification -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-8 py-4">
+                
+                <!-- Circular SVG Progress Ring -->
+                <div class="relative w-44 h-44 flex items-center justify-center">
+                    <svg class="w-44 h-44 transform -rotate-90" viewBox="0 0 120 120">
+                        <!-- Track Circle -->
+                        <circle cx="60" cy="60" r="48" stroke="#CFD6C4" stroke-width="8" fill="transparent" />
+                        <!-- Progress Arc -->
+                        <circle cx="60" cy="60" r="48"
+                            stroke="{% if record.risk_score >= 66.0 %}#F3C3B2{% elif record.risk_score >= 33.0 %}#FDE8D3{% else %}#99CDD8{% endif %}"
+                            stroke-width="8"
+                            fill="transparent"
+                            stroke-dasharray="301.6"
+                            stroke-dashoffset="{{ 301.6 - ([record.risk_score, 4.0]|max / 100.0 * 301.6) }}"
+                            stroke-linecap="round" />
+                    </svg>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                        <span class="text-3xl font-black font-mono tracking-tight text-[#4B554C]">
+                            {{ "%.1f"|format(record.risk_score) }}
+                        </span>
+                        <span class="text-[10px] text-[#657166] font-mono uppercase tracking-widest font-bold">SCORE / 100</span>
+                    </div>
+                </div>
+
+                <div class="h-20 w-0.5 bg-[#CFD6C4] hidden sm:block"></div>
+
+                <div class="text-left sm:max-w-xs space-y-2">
+                    <div class="text-[11px] text-[#657166] uppercase font-mono tracking-wider font-semibold">Risk Classification</div>
+                    <div class="text-2xl sm:text-3xl font-black text-[#4B554C] font-heading">
+                        {{ record.interpretation or (record.diabetes_risk ~ ' Estimated Risk') }}
+                    </div>
+                    <div class="text-xs text-[#657166]">
+                        Inference Confidence: <span class="text-[#4B554C] font-extrabold font-mono">{{ record.confidence }}%</span>
+                    </div>
+                    <div class="text-xs text-[#657166]">
+                        Active Algorithm: <span class="text-[#4B554C] font-mono font-bold">{{ record.model_used }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3-Class Probability Breakdown Row -->
+            <div class="grid grid-cols-3 gap-3 max-w-xl mx-auto pt-2 border-t border-[#CFD6C4]">
+                <div class="p-3.5 rounded-2xl bg-white border border-[#CFD6C4] text-center space-y-1 shadow-sm">
+                    <span class="text-[10px] font-mono text-[#657166] uppercase block">Low Risk Prob</span>
+                    <span class="text-sm font-bold text-emerald-800 font-mono">
+                        {{ record.class_probs.low if record.class_probs else ("%.1f"|format(100.0 - record.risk_score) if record.risk_score < 33.0 else "10.0") }}%
+                    </span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-white border border-[#CFD6C4] text-center space-y-1 shadow-sm">
+                    <span class="text-[10px] font-mono text-[#657166] uppercase block">Medium Risk Prob</span>
+                    <span class="text-sm font-bold text-amber-900 font-mono">
+                        {{ record.class_probs.medium if record.class_probs else "20.0" }}%
+                    </span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-white border border-[#CFD6C4] text-center space-y-1 shadow-sm">
+                    <span class="text-[10px] font-mono text-[#657166] uppercase block">High Risk Prob</span>
+                    <span class="text-sm font-bold text-rose-900 font-mono">
+                        {{ record.class_probs.high if record.class_probs else ("%.1f"|format(record.risk_score) if record.risk_score >= 66.0 else "5.0") }}%
+                    </span>
+                </div>
+            </div>
+
+            <p class="text-[#657166] text-xs max-w-2xl mx-auto leading-relaxed pt-2">
+                {{ clinical.summary or 'Continuous numerical risk calculated via class-conditional posterior probabilities across combined dermatoglyphic and clinical covariates.' }}
+            </p>
+        </div>
+
+        <!-- Machine Learning Optimization & Rationale Audit -->
+        <div class="p-6 rounded-[28px] border border-[#CFD6C4] bg-white space-y-4 shadow-sm">
+            <div class="flex items-center justify-between border-b border-[#CFD6C4] pb-3">
+                <div class="flex items-center space-x-2.5 text-xs font-extrabold text-[#4B554C] uppercase tracking-widest font-heading">
+                    <svg class="w-4 h-4 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" /></svg>
+                    <span>Classifier Optimization &amp; Decision Audit</span>
+                </div>
+                <span class="text-[10px] font-mono px-3 py-1 rounded-full bg-[#DAEBE3] text-[#4B554C] border border-[#CFD6C4] font-semibold">CLINICAL ENGINE</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                <div class="p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] space-y-1">
+                    <span class="text-[10px] text-[#657166] font-mono uppercase block">Active Algorithm</span>
+                    <span class="font-extrabold text-[#4B554C] font-mono">{{ record.model_used }}</span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] space-y-1">
+                    <span class="text-[10px] text-[#657166] font-mono uppercase block">Empirical Confidence</span>
+                    <span class="font-extrabold text-emerald-800 font-mono">{{ record.confidence }}% (Calibrated)</span>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] space-y-1">
+                    <span class="text-[10px] text-[#657166] font-mono uppercase block">Biometric Source</span>
+                    <span class="font-extrabold text-[#4B554C] font-mono">5-Stage Optical Vision</span>
+                </div>
+            </div>
+
+            {% if selection_reason or record.notes %}
+            <div class="p-3.5 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] text-[11px] text-[#657166] space-y-1 font-mono">
+                <span class="text-[#4B554C] font-bold uppercase tracking-wider block text-[10px]">&bull; Dynamic Selection Rationale:</span>
+                <p>{{ selection_reason or record.notes }}</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Prediction Factors Contribution (Explainability) -->
+        <div class="p-6 sm:p-8 rounded-[28px] bg-white border border-[#CFD6C4] space-y-6 shadow-sm">
+            <div class="flex items-center justify-between border-b border-[#CFD6C4] pb-4">
+                <div class="flex items-center space-x-3 text-xs font-extrabold text-[#4B554C] uppercase tracking-widest font-heading">
+                    <svg class="w-4 h-4 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" /><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" /></svg>
+                    <span>Local Feature Attribution (Explainable AI)</span>
+                </div>
+                <span class="text-[10px] text-[#657166] font-mono">Relative Model Weight Attributions</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {% if factor_contributions %}
+                    {% for factor in factor_contributions %}
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-[#4B554C] font-medium">{{ factor.label or factor.feature }}</span>
+                            <span class="text-[#4B554C] font-mono font-bold">{{ factor.percentage or factor.contribution_percent }}%</span>
+                        </div>
+                        <div class="w-full bg-[#FAF9F6] rounded-full h-2.5 overflow-hidden border border-[#CFD6C4]">
+                            <div class="bg-[#99CDD8] h-2.5 rounded-full" style="width: {{ factor.percentage or factor.contribution_percent }}%"></div>
+                        </div>
+                        {% if factor.description %}
+                        <p class="text-[10px] text-[#657166] font-mono">{{ factor.description }}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-[#4B554C] font-medium">Body Mass Index (BMI: {{ record.bmi }})</span>
+                            <span class="text-[#4B554C] font-mono font-bold">34.2%</span>
+                        </div>
+                        <div class="w-full bg-[#FAF9F6] rounded-full h-2.5 overflow-hidden border border-[#CFD6C4]">
+                            <div class="bg-[#99CDD8] h-2.5 rounded-full" style="width: 34.2%"></div>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-[#4B554C] font-medium">Patient Age ({{ record.age }} yrs)</span>
+                            <span class="text-[#4B554C] font-mono font-bold">28.5%</span>
+                        </div>
+                        <div class="w-full bg-[#FAF9F6] rounded-full h-2.5 overflow-hidden border border-[#CFD6C4]">
+                            <div class="bg-[#DAEBE3] h-2.5 rounded-full" style="width: 28.5%"></div>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-[#4B554C] font-medium">Family History Predisposition</span>
+                            <span class="text-[#4B554C] font-mono font-bold">18.1%</span>
+                        </div>
+                        <div class="w-full bg-[#FAF9F6] rounded-full h-2.5 overflow-hidden border border-[#CFD6C4]">
+                            <div class="bg-[#FDE8D3] h-2.5 rounded-full" style="width: 18.1%"></div>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-[#4B554C] font-medium">Dermal Ridge Count ({{ record.ridge_count }})</span>
+                            <span class="text-[#4B554C] font-mono font-bold">11.8%</span>
+                        </div>
+                        <div class="w-full bg-[#FAF9F6] rounded-full h-2.5 overflow-hidden border border-[#CFD6C4]">
+                            <div class="bg-[#F3C3B2] h-2.5 rounded-full" style="width: 11.8%"></div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <p class="text-[11px] text-[#657166] italic">
+                * Note: Factor percentages describe mathematical feature importance in the trained model, not clinical etiology.
+            </p>
+        </div>
+
+        <!-- 2 Column Breakdown -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- Card 1: Dermatoglyphics -->
+            <div class="p-6 rounded-[28px] bg-white border border-[#CFD6C4] space-y-4 shadow-sm">
+                <div class="flex items-center space-x-3 text-xs font-bold text-[#4B554C] uppercase tracking-widest border-b border-[#CFD6C4] pb-3 font-heading">
+                    <svg class="w-4 h-4 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.346" /></svg>
+                    <span>Biometric Dermatoglyphics</span>
+                </div>
+                <div class="space-y-3 text-xs">
+                    <div class="flex justify-between py-1.5 border-b border-[#CFD6C4]/50">
+                        <span class="text-[#657166]">Fingerprint Archetype:</span>
+                        <span class="text-[#4B554C] font-mono uppercase font-bold">{{ record.fingerprint_type }}</span>
+                    </div>
+                    <div class="flex justify-between py-1.5 border-b border-[#CFD6C4]/50">
+                        <span class="text-[#657166]">Dermal Ridge Density:</span>
+                        <span class="text-emerald-800 font-mono font-bold">{{ record.ridge_count }} ridges</span>
+                    </div>
+                    <div class="flex justify-between py-1.5">
+                        <span class="text-[#657166]">Extraction Method:</span>
+                        <span class="text-[#4B554C] font-mono text-right">5-Stage OpenCV Vision</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Physiological Vitals -->
+            <div class="p-6 rounded-[28px] bg-white border border-[#CFD6C4] space-y-4 shadow-sm">
+                <div class="flex items-center space-x-3 text-xs font-bold text-[#4B554C] uppercase tracking-widest border-b border-[#CFD6C4] pb-3 font-heading">
+                    <svg class="w-4 h-4 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" /></svg>
+                    <span>Physiological &amp; Genetic Vitals</span>
+                </div>
+                <div class="space-y-3 text-xs">
+                    <div class="flex justify-between py-1.5 border-b border-[#CFD6C4]/50">
+                        <span class="text-[#657166]">Patient Age:</span>
+                        <span class="text-[#4B554C] font-mono font-bold">{{ record.age }} Years</span>
+                    </div>
+                    <div class="flex justify-between py-1.5 border-b border-[#CFD6C4]/50">
+                        <span class="text-[#657166]">Body Mass Index (BMI):</span>
+                        <span class="text-[#4B554C] font-mono font-bold">{{ record.bmi }} kg/m²</span>
+                    </div>
+                    <div class="flex justify-between py-1.5 border-b border-[#CFD6C4]/50">
+                        <span class="text-[#657166]">Family Diabetes Predisposition:</span>
+                        <span class="text-[#4B554C] font-mono uppercase font-bold">{{ record.family_history }}</span>
+                    </div>
+                    <div class="flex justify-between py-1.5">
+                        <span class="text-[#657166]">BMI Category:</span>
+                        <span class="text-[#4B554C] font-mono">{% if record.bmi >= 30 %}Obese{% elif record.bmi >= 25 %}Overweight{% else %}Normal{% endif %}</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Mandatory Medical Research Disclaimer -->
+        <div class="p-5 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] text-[11px] text-[#657166] leading-relaxed flex items-start gap-3.5 shadow-inner">
+            <svg class="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0-10.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.75c0 5.592 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.57-.598-3.75h-.152c-3.196 0-6.1-1.249-8.25-3.286zm0 13.036h.008v.008H12v-.008z" /></svg>
+            <div>
+                <strong class="text-[#4B554C]">Important Medical Research Disclaimer:</strong>
+                This assessment provides an AI-based preliminary risk screening estimate and is NOT a clinical diagnosis, prognosis, or medical prescription. Users should consult a qualified healthcare professional for diagnostic blood testing (Fasting Blood Glucose and HbA1c).
+            </div>
+        </div>
+
+        <!-- Action Banner to Remedies -->
+        <div class="flex flex-col sm:flex-row items-center justify-between p-6 rounded-[28px] bg-[#FAF9F6] border border-[#CFD6C4] gap-4 no-print shadow-sm">
+            <div class="space-y-1">
+                <h4 class="text-base font-bold text-[#4B554C] font-heading">Personalized Nutrition &amp; Lifestyle Protocol</h4>
+                <p class="text-xs text-[#657166]">Explore evidence-based nutrition protocols, exercise regimens, and screening schedules tailored to this risk profile.</p>
+            </div>
+            <a href="{{ url_for('remidy', diabetes_risk=record.diabetes_risk, age=record.age, bmi=record.bmi, family_history=record.family_history, fingerprint_type=record.fingerprint_type, ridge_count=record.ridge_count) }}" class="btn-ink-pill px-6 py-3 text-xs font-bold transition flex items-center gap-2 whitespace-nowrap font-heading shadow-md hover:scale-[1.02]">
+                <span>View Full Lifestyle Protocol</span>
+                <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

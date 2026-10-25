@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Clinical Inquiry & Support &bull; FingerDiab AI{% endblock %}
+
+{% block content %}
+<div class="py-12 px-4 sm:px-6 lg:px-8 max-w-xl mx-auto space-y-8">
+
+    <!-- Header Section -->
+    <div class="text-center space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DAEBE3] border border-[#CFD6C4] text-[11px] font-bold text-[#4B554C] uppercase tracking-wider font-mono">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+            <span>Healthcare Support &amp; Collaboration</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-[#4B554C] font-heading tracking-tight">
+            Contact Clinical Intelligence
+        </h1>
+        <p class="text-xs sm:text-sm text-[#657166] max-w-md mx-auto">
+            Submit questions regarding the dermatoglyphic biometric screening framework or clinical pilot deployments.
+        </p>
+    </div>
+
+    <!-- Contact Form Card -->
+    <div class="bg-white/90 p-8 sm:p-10 rounded-[32px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-6">
+
+        <form action="{{ url_for('contact_page') }}" method="POST" class="space-y-5">
+            <div class="space-y-1.5">
+                <label for="name" class="block text-xs font-bold text-[#4B554C] uppercase tracking-wider font-mono">Full Name &bull; Title <span class="text-rose-500">*</span></label>
+                <input type="text" id="name" name="name" placeholder="Dr. Rajesh Kumar" required
+                       class="w-full px-4 py-3 bg-[#FAF9F6] border border-[#CFD6C4] focus:border-[#99CDD8] rounded-2xl text-xs text-[#4B554C] focus:outline-none focus:ring-2 focus:ring-[#99CDD8]/40 transition">
+            </div>
+
+            <div class="space-y-1.5">
+                <label for="email" class="block text-xs font-bold text-[#4B554C] uppercase tracking-wider font-mono">Work or Institutional Email <span class="text-rose-500">*</span></label>
+                <input type="email" id="email" name="email" placeholder="doctor@hospital.org" required
+                       class="w-full px-4 py-3 bg-[#FAF9F6] border border-[#CFD6C4] focus:border-[#99CDD8] rounded-2xl text-xs text-[#4B554C] focus:outline-none focus:ring-2 focus:ring-[#99CDD8]/40 transition">
+            </div>
+
+            <div class="space-y-1.5">
+                <label for="message" class="block text-xs font-bold text-[#4B554C] uppercase tracking-wider font-mono">Message or Clinical Inquiry <span class="text-rose-500">*</span></label>
+                <textarea id="message" name="message" rows="4" placeholder="Detail your clinical validation query or institution onboarding request..." required
+                          class="w-full px-4 py-3 bg-[#FAF9F6] border border-[#CFD6C4] focus:border-[#99CDD8] rounded-2xl text-xs text-[#4B554C] focus:outline-none focus:ring-2 focus:ring-[#99CDD8]/40 transition"></textarea>
+            </div>
+
+            <button type="submit" class="w-full btn-ink-pill py-3.5 text-xs font-bold flex items-center justify-center gap-2 shadow-md font-heading">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                </svg>
+                <span>Submit Clinical Inquiry</span>
+            </button>
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,391 @@
+{% extends "base.html" %}
+
+{% block title %}Epidemiological & Biometric Analytics &bull; FingerDiab AI{% endblock %}
+
+{% block content %}
+<div class="py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
+
+    <!-- Header Section -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[#CFD6C4]/80 pb-6">
+        <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DAEBE3] border border-[#CFD6C4] text-[11px] font-bold text-[#4B554C] uppercase tracking-wider font-mono">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#657166] animate-pulse"></span>
+                <span>Epidemiological Cohort Analytics</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-[#4B554C] mt-3 font-heading tracking-tight">
+                Biometric &amp; Clinical Analytics Dashboard
+            </h1>
+            <p class="text-xs sm:text-sm text-[#657166] mt-1 max-w-2xl">
+                Visualizing cohort distributions, dermatoglyphic triradii variance, and multi-variable cardiometabolic correlations across verified patient populations.
+            </p>
+        </div>
+
+        <div class="flex items-center space-x-3">
+            <span class="px-3.5 py-2 rounded-full bg-white/90 border border-[#CFD6C4] text-xs font-mono text-[#4B554C] flex items-center gap-2 shadow-sm">
+                <svg class="w-4 h-4 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+                </svg>
+                <span>Cohort: <strong>{{ chart_data.stats.total_samples }}</strong> Samples</span>
+            </span>
+            <button onclick="window.location.reload()" class="p-2.5 rounded-full bg-white/90 hover:bg-[#DAEBE3] border border-[#CFD6C4] text-[#4B554C] transition shadow-sm" title="Refresh Telemetry">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- 4 KPI Stat Tiles -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+
+        <!-- KPI 1 -->
+        <div class="bg-white/90 p-5 rounded-[24px] border border-[#CFD6C4]/80 shadow-[0_4px_20px_rgb(0,0,0,0.02)] space-y-3">
+            <div class="flex justify-between items-start">
+                <div>
+                    <span class="text-[11px] text-[#657166] uppercase tracking-wider font-semibold block">Total Patients</span>
+                    <span class="text-3xl font-extrabold text-[#4B554C] font-mono mt-1 block">{{ chart_data.stats.total_samples }}</span>
+                </div>
+                <div class="w-10 h-10 rounded-2xl bg-[#DAEBE3] border border-[#CFD6C4] text-[#4B554C] flex items-center justify-center">
+                    <svg class="w-5 h-5 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="text-[11px] font-semibold text-[#657166] flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                <span>Stratified Sample Set Verified</span>
+            </div>
+        </div>
+
+        <!-- KPI 2 -->
+        <div class="bg-white/90 p-5 rounded-[24px] border border-[#CFD6C4]/80 shadow-[0_4px_20px_rgb(0,0,0,0.02)] space-y-3">
+            <div class="flex justify-between items-start">
+                <div>
+                    <span class="text-[11px] text-[#657166] uppercase tracking-wider font-semibold block">Mean Patient Age</span>
+                    <span class="text-3xl font-extrabold text-[#4B554C] font-mono mt-1 block">{{ chart_data.stats.avg_age }} <span class="text-xs text-[#657166] font-sans font-normal">Yrs</span></span>
+                </div>
+                <div class="w-10 h-10 rounded-2xl bg-[#99CDD8]/40 border border-[#99CDD8] text-[#4B554C] flex items-center justify-center">
+                    <svg class="w-5 h-5 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="text-[11px] font-semibold text-[#657166]">Cohort Range: 18 &ndash; 72 Years</div>
+        </div>
+
+        <!-- KPI 3 -->
+        <div class="bg-white/90 p-5 rounded-[24px] border border-[#CFD6C4]/80 shadow-[0_4px_20px_rgb(0,0,0,0.02)] space-y-3">
+            <div class="flex justify-between items-start">
+                <div>
+                    <span class="text-[11px] text-[#657166] uppercase tracking-wider font-semibold block">Mean Population BMI</span>
+                    <span class="text-3xl font-extrabold text-[#4B554C] font-mono mt-1 block">{{ chart_data.stats.avg_bmi }} <span class="text-xs text-[#657166] font-sans font-normal">kg/m²</span></span>
+                </div>
+                <div class="w-10 h-10 rounded-2xl bg-[#FDE8D3] border border-[#CFD6C4] text-[#4B554C] flex items-center justify-center">
+                    <svg class="w-5 h-5 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-16.5-.52l-.548.082A2.25 2.25 0 003 7.747v11.026a2.25 2.25 0 002.048 2.239l.702.07" />
+                    </svg>
+                </div>
+            </div>
+            <div class="text-[11px] font-semibold text-[#657166]">Population Median Benchmark</div>
+        </div>
+
+        <!-- KPI 4 -->
+        <div class="bg-white/90 p-5 rounded-[24px] border border-[#CFD6C4]/80 shadow-[0_4px_20px_rgb(0,0,0,0.02)] space-y-3">
+            <div class="flex justify-between items-start">
+                <div>
+                    <span class="text-[11px] text-[#657166] uppercase tracking-wider font-semibold block">Mean Ridge Count</span>
+                    <span class="text-3xl font-extrabold text-[#4B554C] font-mono mt-1 block">{{ chart_data.stats.avg_ridge_count }}</span>
+                </div>
+                <div class="w-10 h-10 rounded-2xl bg-[#F3C3B2]/50 border border-[#CFD6C4] text-[#4B554C] flex items-center justify-center">
+                    <svg class="w-5 h-5 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a.75.75 0 01.75.75v3a.75.75 0 01-1.5 0v-3a.75.75 0 01.75-.75z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="text-[11px] font-semibold text-[#657166]">Dermatoglyphic Ridge Density</div>
+        </div>
+
+    </div>
+
+    <!-- 6 Charts Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Chart 1: Risk Pie -->
+        <div class="bg-white/90 p-6 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] flex flex-col min-h-[360px]">
+            <div class="flex items-center space-x-2 mb-4 text-xs font-bold text-[#4B554C] uppercase tracking-wider font-mono">
+                <span class="w-2 h-2 rounded-full bg-[#99CDD8]"></span>
+                <span>Diabetes Risk Distribution</span>
+            </div>
+            <div class="relative flex-grow flex items-center justify-center">
+                <canvas id="riskPieCanvas"></canvas>
+            </div>
+        </div>
+
+        <!-- Chart 2: Fingerprint Doughnut -->
+        <div class="bg-white/90 p-6 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] flex flex-col min-h-[360px]">
+            <div class="flex items-center space-x-2 mb-4 text-xs font-bold text-[#4B554C] uppercase tracking-wider font-mono">
+                <span class="w-2 h-2 rounded-full bg-[#DAEBE3]"></span>
+                <span>Fingerprint Archetypes</span>
+            </div>
+            <div class="relative flex-grow flex items-center justify-center">
+                <canvas id="fingerprintDoughnutCanvas"></canvas>
+            </div>
+        </div>
+
+        <!-- Chart 3: Family History -->
+        <div class="bg-white/90 p-6 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] flex flex-col min-h-[360px]">
+            <div class="flex items-center space-x-2 mb-4 text-xs font-bold text-[#4B554C] uppercase tracking-wider font-mono">
+                <span class="w-2 h-2 rounded-full bg-[#FDE8D3]"></span>
+                <span>Family History Prevalence</span>
+            </div>
+            <div class="relative flex-grow flex items-center justify-center">
+                <canvas id="familyHistoryPieCanvas"></canvas>
+            </div>
+        </div>
+
+        <!-- Chart 4: Average Age by Risk -->
+        <div class="bg-white/90 p-6 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] flex flex-col min-h-[360px]">
+            <div class="flex items-center space-x-2 mb-4 text-xs font-bold text-[#4B554C] uppercase tracking-wider font-mono">
+                <span class="w-2 h-2 rounded-full bg-[#F3C3B2]"></span>
+                <span>Mean Age by Risk Tier</span>
+            </div>
+            <div class="relative flex-grow">
+                <canvas id="avgAgeBarCanvas"></canvas>
+            </div>
+        </div>
+
+        <!-- Chart 5: Average BMI by Risk -->
+        <div class="bg-white/90 p-6 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] flex flex-col min-h-[360px]">
+            <div class="flex items-center space-x-2 mb-4 text-xs font-bold text-[#4B554C] uppercase tracking-wider font-mono">
+                <span class="w-2 h-2 rounded-full bg-[#CFD6C4]"></span>
+                <span>Mean BMI by Risk Tier</span>
+            </div>
+            <div class="relative flex-grow">
+                <canvas id="avgBmiBarCanvas"></canvas>
+            </div>
+        </div>
+
+        <!-- Chart 6: Ridge Count Line -->
+        <div class="bg-white/90 p-6 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] flex flex-col min-h-[360px]">
+            <div class="flex items-center space-x-2 mb-4 text-xs font-bold text-[#4B554C] uppercase tracking-wider font-mono">
+                <span class="w-2 h-2 rounded-full bg-[#657166]"></span>
+                <span>Ridge Count vs Risk Progression</span>
+            </div>
+            <div class="relative flex-grow">
+                <canvas id="ridgeCountLineCanvas"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Full-Width Crosstab -->
+    <div class="bg-white/90 p-6 sm:p-8 rounded-[32px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-4">
+        <div>
+            <h3 class="text-base font-bold text-[#4B554C] flex items-center gap-2 font-heading">
+                <svg class="w-5 h-5 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                </svg>
+                <span>Fingerprint Pattern Archetype vs. Diabetes Risk Breakdown</span>
+            </h3>
+            <p class="text-xs text-[#657166] mt-0.5">Cross-tabulation showing Arch, Loop, and Whorl distributions across stratified diabetes risk categories.</p>
+        </div>
+        <div class="relative h-80">
+            <canvas id="crosstabStackedCanvas"></canvas>
+        </div>
+    </div>
+
+</div>
+
+<!-- Chart.js Setup with Soft Organic Palette -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const rawData = {{ chart_data | tojson }};
+
+        Chart.defaults.color = '#657166';
+        Chart.defaults.font.family = 'Plus Jakarta Sans';
+        Chart.defaults.borderColor = 'rgba(101, 113, 102, 0.08)';
+
+        const tooltipConfig = {
+            backgroundColor: '#4B554C',
+            titleColor: '#FAF9F6',
+            bodyColor: '#DAEBE3',
+            borderColor: '#CFD6C4',
+            borderWidth: 1,
+            padding: 12,
+            cornerRadius: 12,
+            boxPadding: 6
+        };
+
+        // 1. Diabetes Risk Pie
+        new Chart(document.getElementById('riskPieCanvas'), {
+            type: 'pie',
+            data: {
+                labels: rawData.riskPie.labels,
+                datasets: [{
+                    data: rawData.riskPie.data,
+                    backgroundColor: ['#DAEBE3', '#FDE8D3', '#F3C3B2'],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 12, padding: 14, font: { size: 12, weight: '600' } } },
+                    tooltip: tooltipConfig
+                }
+            }
+        });
+
+        // 2. Fingerprint Doughnut
+        new Chart(document.getElementById('fingerprintDoughnutCanvas'), {
+            type: 'doughnut',
+            data: {
+                labels: rawData.fingerprintDoughnut.labels,
+                datasets: [{
+                    data: rawData.fingerprintDoughnut.data,
+                    backgroundColor: ['#99CDD8', '#DAEBE3', '#CFD6C4'],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '68%',
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 12, padding: 14, font: { size: 12, weight: '600' } } },
+                    tooltip: tooltipConfig
+                }
+            }
+        });
+
+        // 3. Family History Pie
+        new Chart(document.getElementById('familyHistoryPieCanvas'), {
+            type: 'pie',
+            data: {
+                labels: rawData.familyHistoryPie.labels,
+                datasets: [{
+                    data: rawData.familyHistoryPie.data,
+                    backgroundColor: ['#F3C3B2', '#DAEBE3'],
+                    borderColor: '#FFFFFF',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 12, padding: 14, font: { size: 12, weight: '600' } } },
+                    tooltip: tooltipConfig
+                }
+            }
+        });
+
+        // 4. Average Age Bar
+        new Chart(document.getElementById('avgAgeBarCanvas'), {
+            type: 'bar',
+            data: {
+                labels: rawData.avgAgeBar.labels,
+                datasets: [{
+                    label: 'Mean Age (Years)',
+                    data: rawData.avgAgeBar.data,
+                    backgroundColor: ['#99CDD8', '#FDE8D3', '#F3C3B2'],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false }, tooltip: tooltipConfig },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: 'rgba(101, 113, 102, 0.08)' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // 5. Average BMI Bar
+        new Chart(document.getElementById('avgBmiBarCanvas'), {
+            type: 'bar',
+            data: {
+                labels: rawData.avgBmiBar.labels,
+                datasets: [{
+                    label: 'Mean BMI',
+                    data: rawData.avgBmiBar.data,
+                    backgroundColor: ['#DAEBE3', '#FDE8D3', '#F3C3B2'],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false }, tooltip: tooltipConfig },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: 'rgba(101, 113, 102, 0.08)' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // 6. Ridge Count Line
+        new Chart(document.getElementById('ridgeCountLineCanvas'), {
+            type: 'line',
+            data: {
+                labels: rawData.ridgeCountLine.labels,
+                datasets: [{
+                    label: 'Ridge Count',
+                    data: rawData.ridgeCountLine.data,
+                    borderColor: '#4B554C',
+                    backgroundColor: 'rgba(153, 205, 216, 0.25)',
+                    fill: true,
+                    tension: 0.35,
+                    pointBackgroundColor: '#99CDD8',
+                    pointBorderColor: '#4B554C',
+                    pointBorderWidth: 2,
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false }, tooltip: tooltipConfig },
+                scales: {
+                    y: { beginAtZero: false, grid: { color: 'rgba(101, 113, 102, 0.08)' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // 7. Crosstab Stacked Bar
+        const crosstabData = rawData.crosstabStacked;
+        const colors = ['#99CDD8', '#DAEBE3', '#F3C3B2'];
+        crosstabData.datasets.forEach((ds, idx) => {
+            ds.backgroundColor = colors[idx % colors.length];
+            ds.borderRadius = 6;
+        });
+
+        new Chart(document.getElementById('crosstabStackedCanvas'), {
+            type: 'bar',
+            data: {
+                labels: crosstabData.labels,
+                datasets: crosstabData.datasets
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { boxWidth: 12, padding: 12, font: { size: 12, weight: '600' } } },
+                    tooltip: tooltipConfig
+                },
+                scales: {
+                    x: { stacked: true, grid: { display: false } },
+                    y: { stacked: true, grid: { color: 'rgba(101, 113, 102, 0.08)' } }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}

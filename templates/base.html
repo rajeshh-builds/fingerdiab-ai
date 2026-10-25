@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}FingerDiab AI &bull; Healthcare Biometric Screening{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩺</text></svg>">
+
+    <!-- Suppress Tailwind Play CDN development warning in browser console -->
+    <script>
+        (function() {
+            const _warn = console.warn;
+            console.warn = function(...args) {
+                if (args[0] && typeof args[0] === 'string' && args[0].indexOf('cdn.tailwindcss.com') !== -1) return;
+                _warn.apply(console, args);
+            };
+        })();
+    </script>
+    <!-- Tailwind CSS (CDN) with Custom Super-Soft Organic Tranquil Palette -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        soft: {
+                            sky: '#99CDD8',       // Soft Aquamarine / Sky Blue
+                            mint: '#DAEBE3',      // Pale Mint Ice
+                            sand: '#FDE8D3',      // Warm Sand / Pale Peach Cream
+                            blush: '#F3C3B2',     // Muted Dusty Coral / Blush
+                            sage: '#CFD6C4',      // Laurel / Muted Sage Mist
+                            ink: '#657166',       // Deep Slate Sage / Charcoal Olive ink
+                            dark: '#4B554C',      // Darker Slate Sage
+                            canvas: '#FAF9F6',    // Warm Alabaster Canvas
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'ui-monospace', 'Menlo', 'monospace'],
+                    },
+                    boxShadow: {
+                        'soft-card': '0 16px 36px -6px rgba(101, 113, 102, 0.10), 0 4px 12px -2px rgba(101, 113, 102, 0.04)',
+                        'soft-hover': '0 20px 42px -6px rgba(101, 113, 102, 0.16), 0 6px 16px -2px rgba(101, 113, 102, 0.08)',
+                        'soft-pill': '0 6px 20px -3px rgba(101, 113, 102, 0.15)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts: Plus Jakarta Sans, Inter, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Universal Material Icons & Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <style>
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Super-Soft Organic Healthcare Palette */
+        body {
+            background-color: #FAF9F6;
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(207, 214, 196, 0.50) 0px, transparent 55%),
+                radial-gradient(at 90% 15%, rgba(153, 205, 216, 0.45) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(253, 232, 211, 0.40) 0px, transparent 60%),
+                radial-gradient(at 85% 85%, rgba(243, 195, 178, 0.35) 0px, transparent 55%),
+                radial-gradient(at 15% 90%, rgba(218, 235, 227, 0.55) 0px, transparent 55%);
+            background-attachment: fixed;
+            color: #657166;
+            font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -0.025em;
+            color: #4B554C;
+        }
+
+        /* Super-Soft Organic Card */
+        .corporate-card, .medtech-card, .enterprise-card, .glass-card, .card-surface {
+            background: rgba(255, 255, 255, 0.85) !important;
+            border: 1px solid rgba(207, 214, 196, 0.70) !important;
+            border-radius: 28px !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            box-shadow: 0 16px 36px -6px rgba(101, 113, 102, 0.08), 0 4px 12px -2px rgba(101, 113, 102, 0.04) !important;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .corporate-card:hover {
+            border-color: #99CDD8 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 20px 42px -6px rgba(101, 113, 102, 0.14), 0 6px 16px -2px rgba(101, 113, 102, 0.08) !important;
+        }
+
+        /* Primary Action Pill (Ink Slate) */
+        .btn-ink-pill, .btn-mint-pill {
+            background-color: #657166 !important;
+            color: #FFFFFF !important;
+            font-weight: 700 !important;
+            border-radius: 9999px !important;
+            box-shadow: 0 4px 16px rgba(101, 113, 102, 0.25) !important;
+            transition: all 0.2s ease !important;
+        }
+        .btn-ink-pill:hover, .btn-mint-pill:hover {
+            background-color: #4B554C !important;
+            box-shadow: 0 6px 24px rgba(101, 113, 102, 0.35) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        /* Secondary Soft Pill */
+        .btn-soft-pill, .btn-outline-pill {
+            background: rgba(255, 255, 255, 0.90) !important;
+            color: #657166 !important;
+            border: 1px solid #CFD6C4 !important;
+            font-weight: 600 !important;
+            border-radius: 9999px !important;
+            backdrop-filter: blur(8px) !important;
+            transition: all 0.2s ease !important;
+        }
+        .btn-soft-pill:hover, .btn-outline-pill:hover {
+            border-color: #99CDD8 !important;
+            background: #DAEBE3 !important;
+            color: #4B554C !important;
+        }
+
+        /* Scanning Beam */
+        @keyframes bioScan {
+            0% { top: 4%; opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { top: 94%; opacity: 0.3; }
+        }
+
+        .bio-scan-line {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #99CDD8, #DAEBE3, transparent);
+            box-shadow: 0 0 16px #99CDD8, 0 0 8px #DAEBE3;
+            animation: bioScan 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        /* Precision scrollbar */
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF9F6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CFD6C4;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #99CDD8;
+        }
+
+        @media print {
+            body { background: #ffffff !important; color: #000000 !important; }
+            nav, header, footer, .no-print { display: none !important; }
+            .corporate-card, .medtech-card, .enterprise-card, .glass-card { background: #ffffff !important; border: 1px solid #cbd5e1 !important; color: #000000 !important; }
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body class="min-h-screen w-full overflow-x-hidden flex flex-col selection:bg-[#99CDD8]/40 selection:text-[#4B554C]">
+
+    <!-- Translucent Super-Soft Organic Header -->
+    <header class="no-print sticky top-0 z-50 bg-white/85 backdrop-blur-xl border-b border-[#CFD6C4]/60 shadow-[0_4px_20px_rgba(101,113,102,0.05)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3.5 flex items-center justify-between">
+            
+            <!-- Brand Logo: CarePlus & FingerDiab AI with Rounded Soft Aquamarine Badge -->
+            <a href="{{ url_for('index_page') }}" class="flex items-center space-x-2.5 sm:space-x-3 group">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#99CDD8] flex items-center justify-center text-[#4B554C] shadow-[0_4px_16px_rgba(153,205,216,0.35)] group-hover:scale-105 transition-all flex-shrink-0">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <div class="flex items-center space-x-1.5 sm:space-x-2">
+                        <span class="font-extrabold text-[#4B554C] tracking-tight text-sm sm:text-base font-heading">CAREPLUS<span class="hidden sm:inline text-[#657166] font-semibold"> &bull; FINGERDIAB</span></span>
+                    </div>
+                    <span class="text-[9px] sm:text-[10px] tracking-wider text-[#657166]/70 uppercase font-mono font-medium">Non-Invasive AI</span>
+                </div>
+            </a>
+
+            <!-- Central Navigation Links (Soft Capsule Navbar) -->
+            {% if request.endpoint not in ['login_page', 'register_page'] %}
+            <nav class="hidden md:flex items-center space-x-1 text-xs font-semibold text-[#657166]">
+                <a href="{{ url_for('index_page') }}" class="px-4 py-2 rounded-full hover:text-[#4B554C] hover:bg-white/80 transition {% if request.endpoint == 'index_page' %}text-[#4B554C] bg-white shadow-sm border border-[#CFD6C4]/60{% endif %}">Home</a>
+                <a href="{{ url_for('about_page') }}" class="px-4 py-2 rounded-full hover:text-[#4B554C] hover:bg-white/80 transition {% if request.endpoint == 'about_page' %}text-[#4B554C] bg-white shadow-sm border border-[#CFD6C4]/60{% endif %}">Clinical Basis</a>
+                <a href="{{ url_for('technology_page') }}" class="px-4 py-2 rounded-full hover:text-[#4B554C] hover:bg-white/80 transition {% if request.endpoint == 'technology_page' %}text-[#4B554C] bg-white shadow-sm border border-[#CFD6C4]/60{% endif %}">5-Stage CV</a>
+                <a href="{{ url_for('model_benchmark_page') }}" class="px-4 py-2 rounded-full hover:text-[#4B554C] hover:bg-white/80 transition {% if request.endpoint == 'model_benchmark_page' %}text-[#4B554C] bg-white shadow-sm border border-[#CFD6C4]/60{% endif %}">Model Matrix</a>
+                <a href="{{ url_for('simulator_page') }}" class="px-4 py-2 rounded-full hover:text-[#4B554C] hover:bg-white/80 transition {% if request.endpoint == 'simulator_page' %}text-[#4B554C] bg-white shadow-sm border border-[#CFD6C4]/60{% endif %}">Simulator</a>
+                <a href="{{ url_for('remidy') }}" class="px-4 py-2 rounded-full hover:text-[#4B554C] hover:bg-white/80 transition {% if request.endpoint == 'remidy' %}text-[#4B554C] bg-white shadow-sm border border-[#CFD6C4]/60{% endif %}">Protocols</a>
+                <a href="{{ url_for('dashboard_page') }}" class="px-4 py-2 rounded-full hover:text-[#4B554C] hover:bg-white/80 transition {% if request.endpoint == 'dashboard_page' %}text-[#4B554C] bg-white shadow-sm border border-[#CFD6C4]/60{% endif %}">Analytics</a>
+                {% if session.get('user_id') %}
+                <a href="{{ url_for('history_page') }}" class="px-4 py-2 rounded-full hover:text-[#4B554C] hover:bg-white/80 transition {% if request.endpoint == 'history_page' %}text-[#4B554C] bg-white shadow-sm border border-[#CFD6C4]/60{% endif %}">Records</a>
+                {% endif %}
+            </nav>
+            {% else %}
+            <div class="hidden md:flex items-center space-x-2 text-xs text-[#657166] font-mono bg-white border border-[#CFD6C4] px-4 py-1.5 rounded-full shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-[#99CDD8] animate-pulse"></span>
+                <span>AUTHENTICATION &bull; CLINICAL GATEWAY</span>
+            </div>
+            {% endif %}
+
+            <!-- Actions / Account -->
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                {% if session.get('user_id') %}
+                    <div class="hidden sm:flex items-center gap-2 bg-white border border-[#CFD6C4] px-3.5 py-1.5 rounded-full shadow-sm">
+                        <div class="w-5 h-5 rounded-full bg-[#99CDD8] text-white font-bold text-[10px] flex items-center justify-center">
+                            {{ session.get('username', 'U')[0]|upper }}
+                        </div>
+                        <span class="text-xs font-semibold text-[#4B554C] font-mono">{{ session.get('username') }}</span>
+                    </div>
+                    <a href="{{ url_for('upload_page') }}" class="hidden xs:flex btn-ink-pill px-3.5 sm:px-4 py-2 text-xs items-center gap-1.5 shadow-sm">
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                        <span>Screen Patient</span>
+                    </a>
+                    <a href="{{ url_for('logout') }}" class="text-xs text-[#657166] hover:text-rose-500 hover:bg-rose-50 p-2 rounded-full border border-transparent hover:border-rose-200 transition" title="Sign Out">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" /></svg>
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('login_page') }}" class="hidden sm:inline-block text-xs font-semibold text-[#657166] hover:text-[#4B554C] px-3 py-1.5 rounded-full transition">Sign In</a>
+                    <a href="{{ url_for('upload_page') }}" class="hidden xs:flex btn-ink-pill px-3 sm:px-5 py-2 sm:py-2.5 text-xs items-center gap-1.5">
+                        <span>Book Screening</span>
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                    </a>
+                {% endif %}
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" type="button" class="md:hidden text-[#4B554C] p-2 rounded-2xl bg-white border border-[#CFD6C4] shadow-sm">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-[#CFD6C4]/70 bg-white/95 backdrop-blur-xl px-5 py-5 space-y-3 shadow-xl">
+            <div class="grid grid-cols-2 gap-2 text-xs font-semibold text-[#4B554C]">
+                <a href="{{ url_for('index_page') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-[#FAF9F6] hover:bg-[#DAEBE3] transition">
+                    <span class="w-2 h-2 rounded-full bg-[#10B981]"></span>
+                    <span>Home</span>
+                </a>
+                <a href="{{ url_for('about_page') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-[#FAF9F6] hover:bg-[#DAEBE3] transition">
+                    <span class="w-2 h-2 rounded-full bg-[#99CDD8]"></span>
+                    <span>Clinical Basis</span>
+                </a>
+                <a href="{{ url_for('technology_page') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-[#FAF9F6] hover:bg-[#DAEBE3] transition">
+                    <span class="w-2 h-2 rounded-full bg-[#FDE8D3]"></span>
+                    <span>5-Stage CV</span>
+                </a>
+                <a href="{{ url_for('model_benchmark_page') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-[#FAF9F6] hover:bg-[#DAEBE3] transition">
+                    <span class="w-2 h-2 rounded-full bg-[#F3C3B2]"></span>
+                    <span>Model Matrix</span>
+                </a>
+                <a href="{{ url_for('simulator_page') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-[#FAF9F6] hover:bg-[#DAEBE3] transition">
+                    <span class="w-2 h-2 rounded-full bg-[#CFD6C4]"></span>
+                    <span>Simulator</span>
+                </a>
+                <a href="{{ url_for('remidy') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-[#FAF9F6] hover:bg-[#DAEBE3] transition">
+                    <span class="w-2 h-2 rounded-full bg-[#99CDD8]"></span>
+                    <span>Protocols</span>
+                </a>
+                <a href="{{ url_for('dashboard_page') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-[#FAF9F6] hover:bg-[#DAEBE3] transition">
+                    <span class="w-2 h-2 rounded-full bg-[#DAEBE3]"></span>
+                    <span>Analytics</span>
+                </a>
+                <a href="{{ url_for('history_page') }}" class="flex items-center gap-2 px-3 py-2.5 rounded-xl bg-[#FAF9F6] hover:bg-[#DAEBE3] transition">
+                    <span class="w-2 h-2 rounded-full bg-[#F3C3B2]"></span>
+                    <span>Records</span>
+                </a>
+            </div>
+
+            <!-- Drawer Bottom Action Pill & Auth -->
+            <div class="pt-3 border-t border-[#CFD6C4]/60 space-y-2">
+                <a href="{{ url_for('upload_page') }}" class="w-full btn-ink-pill py-3 text-xs font-bold flex items-center justify-center gap-2 font-heading shadow-md">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                    <span>Book Clinical Screening</span>
+                </a>
+
+                {% if session.get('user_id') %}
+                    <div class="flex items-center justify-between px-3 py-2 bg-[#FAF9F6] rounded-xl border border-[#CFD6C4]">
+                        <div class="flex items-center gap-2">
+                            <div class="w-6 h-6 rounded-full bg-[#99CDD8] text-white font-bold text-xs flex items-center justify-center">
+                                {{ session.get('username', 'U')[0]|upper }}
+                            </div>
+                            <span class="text-xs font-semibold text-[#4B554C] font-mono">{{ session.get('username') }}</span>
+                        </div>
+                        <a href="{{ url_for('logout') }}" class="text-xs font-bold text-rose-500 hover:text-rose-700 flex items-center gap-1">
+                            <span>Sign Out</span>
+                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" /></svg>
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="grid grid-cols-2 gap-2 pt-1">
+                        <a href="{{ url_for('login_page') }}" class="text-center py-2.5 rounded-xl border border-[#CFD6C4] bg-white text-xs font-semibold text-[#4B554C] hover:bg-[#FAF9F6] transition">Sign In</a>
+                        <a href="{{ url_for('register_page') }}" class="text-center py-2.5 rounded-xl bg-[#DAEBE3] border border-[#CFD6C4] text-xs font-bold text-[#4B554C] hover:bg-[#99CDD8]/40 transition">Create Account</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <!-- Flash Messages Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full mt-4 no-print">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="mb-3 px-4 py-3 rounded-2xl text-xs font-semibold flex items-center justify-between border shadow-sm {% if category == 'success' %}bg-emerald-50 border-emerald-200 text-emerald-800{% elif category == 'error' or category == 'danger' %}bg-rose-50 border-rose-200 text-rose-800{% else %}bg-[#DAEBE3] border-[#CFD6C4] text-[#4B554C]{% endif %}">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2 h-2 rounded-full {% if category == 'success' %}bg-emerald-500{% elif category == 'error' or category == 'danger' %}bg-rose-500{% else %}bg-[#99CDD8]{% endif %}"></span>
+                            <span>{{ message }}</span>
+                        </div>
+                        <button onclick="this.parentElement.remove()" class="text-[#657166] hover:text-[#4B554C]">&times;</button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Main Content Stage -->
+    <main class="flex-grow">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Super-Soft Corporate Healthcare Footer -->
+    <footer class="no-print border-t border-[#CFD6C4]/70 bg-white/80 backdrop-blur-xl py-14 mt-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12 text-xs">
+                
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-xl bg-[#99CDD8] flex items-center justify-center text-white font-bold">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                        </div>
+                        <span class="font-extrabold text-[#4B554C] tracking-tight text-sm font-heading">CAREPLUS <span class="text-[#657166] font-semibold">&bull; FINGERDIAB</span></span>
+                    </div>
+                    <p class="text-[#657166] leading-relaxed max-w-xs">
+                        Advanced non-invasive dermatoglyphic risk screening system engineered for healthcare clinics, certified research institutes, and modern hospitals.
+                    </p>
+                </div>
+
+                <div>
+                    <div class="font-bold text-[#4B554C] mb-4 tracking-wider uppercase text-[11px] font-mono">Clinical Departments</div>
+                    <ul class="space-y-2.5 text-[#657166]">
+                        <li><a href="{{ url_for('upload_page') }}" class="hover:text-[#4B554C] transition flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#99CDD8]"></span>Biometric Dermatology</a></li>
+                        <li><a href="{{ url_for('simulator_page') }}" class="hover:text-[#4B554C] transition flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#99CDD8]"></span>Metabolic Risk Simulation</a></li>
+                        <li><a href="{{ url_for('model_benchmark_page') }}" class="hover:text-[#4B554C] transition flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#99CDD8]"></span>Ensemble Intelligence Matrix</a></li>
+                        <li><a href="{{ url_for('dashboard_page') }}" class="hover:text-[#4B554C] transition flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#99CDD8]"></span>Population Cohort Analytics</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="font-bold text-[#4B554C] mb-4 tracking-wider uppercase text-[11px] font-mono">Scientific Basis</div>
+                    <ul class="space-y-2.5 text-[#657166]">
+                        <li><a href="{{ url_for('about_page') }}" class="hover:text-[#4B554C] transition flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#CFD6C4]"></span>Embryonic Ridge Formation</a></li>
+                        <li><a href="{{ url_for('technology_page') }}" class="hover:text-[#4B554C] transition flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#CFD6C4]"></span>5-Stage Computer Vision</a></li>
+                        <li><a href="{{ url_for('api_health') }}" class="hover:text-[#4B554C] transition flex items-center gap-1.5" target="_blank"><span class="w-1.5 h-1.5 rounded-full bg-[#CFD6C4]"></span>API Health &amp; Telemetry</a></li>
+                        <li><a href="{{ url_for('contact_page') }}" class="hover:text-[#4B554C] transition flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#CFD6C4]"></span>Clinician Inquiries</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="font-bold text-[#4B554C] mb-4 tracking-wider uppercase text-[11px] font-mono">Institutional Status</div>
+                    <p class="text-[11px] text-[#657166] leading-relaxed">
+                        Non-invasive observational risk screening. Designed for clinical triage and early risk detection without replacing venous laboratory diagnostics.
+                    </p>
+                    <div class="mt-4 inline-flex items-center space-x-2 text-[10px] font-mono text-[#4B554C] bg-[#FAF9F6] border border-[#CFD6C4] px-3.5 py-1.5 rounded-full shadow-sm">
+                        <span class="w-2 h-2 rounded-full bg-[#99CDD8] animate-pulse"></span>
+                        <span>Model v1.0.0 &bull; 99.5% CV Acc</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="pt-8 border-t border-[#CFD6C4]/60 flex flex-col sm:flex-row items-center justify-between text-[11px] text-[#657166] font-mono">
+                <div>&copy; 2026 CarePlus &bull; FingerDiab AI. All Rights Reserved.</div>
+                <div class="mt-3 sm:mt-0 flex items-center space-x-4 text-[#4B554C]">
+                    <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#99CDD8]"></span>100% Deterministic</span>
+                    <span class="text-[#CFD6C4]">&bull;</span>
+                    <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-[#DAEBE3]"></span>Zero Blood Drawing</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Navigation Drawer Script -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>

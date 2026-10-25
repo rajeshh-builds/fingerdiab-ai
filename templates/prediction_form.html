@@ -1,0 +1,404 @@
+{% extends "base.html" %}
+
+{% block title %}Step 2: Clinical Health Parameters &bull; FingerDiab AI{% endblock %}
+
+{% block content %}
+<div class="py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8">
+
+    <!-- 3-Step Healthcare Stepper Header -->
+    <div class="max-w-2xl mx-auto">
+        <div class="flex items-center justify-between text-xs font-mono">
+            
+            <!-- Step 1: Completed -->
+            <div class="flex items-center space-x-2.5 text-[#657166] font-bold">
+                <span class="w-8 h-8 rounded-2xl bg-[#DAEBE3] text-[#4B554C] border border-[#CFD6C4] flex items-center justify-center font-black text-xs shadow-sm">
+                    <svg class="w-4 h-4 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                </span>
+                <span class="tracking-wide">Biometrics</span>
+            </div>
+
+            <div class="flex-1 h-0.5 bg-[#CFD6C4] mx-3.5"></div>
+
+            <!-- Step 2: Active -->
+            <div class="flex items-center space-x-2.5 text-[#4B554C] font-bold">
+                <span class="w-8 h-8 rounded-2xl bg-[#657166] text-white flex items-center justify-center font-black text-xs shadow-sm">
+                    2
+                </span>
+                <span class="tracking-wide">Clinical Vitals</span>
+            </div>
+
+            <div class="flex-1 h-0.5 bg-[#CFD6C4]/60 mx-3.5"></div>
+
+            <!-- Step 3: Dossier -->
+            <div class="flex items-center space-x-2.5 text-[#657166]/60 font-medium">
+                <span class="w-8 h-8 rounded-2xl bg-[#DAEBE3] border border-[#CFD6C4] text-[#657166] flex items-center justify-center font-bold text-xs">
+                    3
+                </span>
+                <span>Diagnostic Report</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Main Card -->
+    <div class="p-6 sm:p-10 rounded-[32px] bg-white/85 border border-[#CFD6C4] shadow-soft-card space-y-8 relative overflow-hidden backdrop-blur-xl">
+
+        <!-- Top Header -->
+        <div class="text-center max-w-xl mx-auto space-y-3">
+            <span class="text-[11px] font-mono font-bold text-[#4B554C] uppercase tracking-widest bg-[#DAEBE3] border border-[#CFD6C4] px-4 py-1.5 rounded-full inline-flex items-center gap-2 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-[#99CDD8] animate-pulse"></span>
+                <span>Stage 2 &bull; Multimodal Clinical Feature Fusion</span>
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-[#4B554C] tracking-tight font-heading">
+                Patient Vitals &amp; Clinical Indicators
+            </h1>
+            <p class="text-xs sm:text-sm text-[#657166] leading-relaxed max-w-lg mx-auto">
+                Combine the extracted dermatoglyphic vector with standard clinical indicators for machine learning risk screening.
+            </p>
+        </div>
+
+        <!-- Quick 1-Click Clinical Archetype Fillers -->
+        <div class="p-4 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] space-y-2.5 shadow-inner">
+            <div class="flex items-center justify-between text-xs">
+                <span class="font-mono text-[#4B554C] font-bold uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                    <span>1-Click Clinical Test Archetypes:</span>
+                </span>
+                <span class="text-[#657166]/70 text-[10px] font-mono hidden sm:inline">Select any preset to populate values instantly</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+                <button type="button" onclick="loadClinicalPreset('healthy')" class="px-3.5 py-2.5 rounded-2xl bg-white hover:bg-[#DAEBE3]/50 border border-[#CFD6C4] text-[#4B554C] text-left transition flex items-center gap-2 group shadow-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                    <div>
+                        <div class="font-bold text-[11px] text-[#4B554C]">Healthy Young Adult</div>
+                        <div class="text-[10px] text-[#657166] font-mono">Age 22 &bull; BMI 21.5 &bull; No FH</div>
+                    </div>
+                </button>
+                <button type="button" onclick="loadClinicalPreset('moderate')" class="px-3.5 py-2.5 rounded-2xl bg-white hover:bg-[#FDE8D3] border border-[#CFD6C4] text-[#4B554C] text-left transition flex items-center gap-2 group shadow-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                    <div>
+                        <div class="font-bold text-[11px] text-[#4B554C]">Borderline / Moderate</div>
+                        <div class="text-[10px] text-[#657166] font-mono">Age 45 &bull; BMI 27.2 &bull; Yes FH</div>
+                    </div>
+                </button>
+                <button type="button" onclick="loadClinicalPreset('high')" class="px-3.5 py-2.5 rounded-2xl bg-white hover:bg-[#F3C3B2]/40 border border-[#CFD6C4] text-[#4B554C] text-left transition flex items-center gap-2 group shadow-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                    <div>
+                        <div class="font-bold text-[11px] text-[#4B554C]">Elevated High Risk</div>
+                        <div class="text-[10px] text-[#657166] font-mono">Age 58 &bull; BMI 33.5 &bull; Yes FH</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Biometric Vector Attached Lock Banner -->
+        <div class="p-5 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-2xl bg-white border border-[#CFD6C4] flex items-center justify-center text-[#657166] shadow-sm">
+                    <svg class="w-6 h-6 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.346" />
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-[11px] font-mono text-[#4B554C] font-bold uppercase tracking-wider block">
+                        Dermatoglyphic Vector Attached
+                    </span>
+                    <div class="flex items-center space-x-3 text-xs mt-1">
+                        <span class="text-[#657166]">Pattern: <strong id="summaryPatternDisplay" class="text-[#4B554C] font-mono uppercase font-bold">{{ fingerprint_type }}</strong></span>
+                        <span class="text-[#CFD6C4]">&bull;</span>
+                        <span class="text-[#657166]">Ridge Count: <strong id="summaryRidgeDisplay" class="text-emerald-700 font-mono font-bold">{{ ridge_count }}</strong></span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <button type="button" onclick="toggleBiometricEditor()" class="text-xs text-[#4B554C] hover:text-[#657166] transition flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white border border-[#CFD6C4] shadow-sm">
+                    <svg class="w-3.5 h-3.5 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" /></svg>
+                    <span>Adjust Biometrics</span>
+                </button>
+                <a href="{{ url_for('upload_page') }}" class="text-xs text-[#657166] hover:text-[#4B554C] transition flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#DAEBE3] border border-[#CFD6C4] shadow-sm">
+                    <svg class="w-3.5 h-3.5 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>
+                    <span>Re-acquire</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Optional Biometric Override Drawer -->
+        <div id="biometricDrawer" class="hidden p-4 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] space-y-3 text-xs shadow-inner">
+            <span class="font-bold text-[#4B554C] block uppercase tracking-wider font-mono text-[11px]">
+                Biometric Parameter Override &bull; Research Simulation
+            </span>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-[#657166] mb-1 text-[11px]">Pattern Archetype:</label>
+                    <select id="patternSelect" onchange="syncBiometrics()" class="w-full px-3 py-2 bg-white border border-[#CFD6C4] rounded-xl text-[#4B554C] text-xs focus:outline-none focus:border-[#99CDD8]">
+                        <option value="arch" {% if fingerprint_type == 'arch' %}selected{% endif %}>Arch</option>
+                        <option value="loop" {% if fingerprint_type == 'loop' %}selected{% endif %}>Loop</option>
+                        <option value="whorl" {% if fingerprint_type == 'whorl' %}selected{% endif %}>Whorl</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-[#657166] mb-1 text-[11px]">Ridge Count (5 - 35):</label>
+                    <input type="number" id="ridgeInput" value="{{ ridge_count }}" min="5" max="35" onchange="syncBiometrics()" onkeyup="syncBiometrics()" class="w-full px-3 py-2 bg-white border border-[#CFD6C4] rounded-xl text-[#4B554C] text-xs focus:outline-none focus:border-[#99CDD8]">
+                </div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <form action="{{ url_for('predict_diabetes') }}" method="POST" class="space-y-6">
+            <input type="hidden" id="fp_type_hidden" name="fingerprint_type_hidden" value="{{ fingerprint_type }}">
+            <input type="hidden" id="ridge_count_hidden" name="ridge_count_hidden" value="{{ ridge_count }}">
+            <input type="hidden" name="model_choice" value="auto">
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs">
+
+                <!-- Patient Name -->
+                <div class="space-y-2">
+                    <label for="patient_name" class="block font-bold text-[#4B554C] uppercase tracking-wider text-[11px] font-mono">
+                        Patient / Subject Identifier
+                    </label>
+                    <div class="relative">
+                        <svg class="w-4 h-4 text-[#657166] absolute left-3.5 top-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+                        <input type="text" id="patient_name" name="patient_name" value="{{ session.get('full_name', session.get('username', 'Patient Subject')) }}" required
+                               class="w-full pl-11 pr-4 py-3 bg-white border border-[#CFD6C4] focus:border-[#99CDD8] rounded-2xl text-xs text-[#4B554C] focus:outline-none shadow-sm transition">
+                    </div>
+                </div>
+
+                <!-- Age -->
+                <div class="space-y-2">
+                    <label for="age" class="block font-bold text-[#4B554C] uppercase tracking-wider text-[11px] font-mono">
+                        Patient Age (Years) <span class="text-rose-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <svg class="w-4 h-4 text-[#657166] absolute left-3.5 top-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <input type="number" id="age" name="age" min="1" max="110" placeholder="e.g. 24" required
+                               class="w-full pl-11 pr-4 py-3 bg-white border border-[#CFD6C4] focus:border-[#99CDD8] rounded-2xl text-xs text-[#4B554C] focus:outline-none shadow-sm transition">
+                    </div>
+                </div>
+
+                <!-- BMI with Realtime Health Badge -->
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center">
+                        <label for="bmi" class="block font-bold text-[#4B554C] uppercase tracking-wider text-[11px] font-mono">
+                            Body Mass Index (BMI) <span class="text-rose-500">*</span>
+                        </label>
+                        <button type="button" onclick="toggleBmiCalculator()" class="text-[11px] text-[#4B554C] hover:underline font-semibold flex items-center gap-1 transition">
+                            <svg class="w-3.5 h-3.5 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008zm0 2.25h.008v.008H8.25V13.5zm0 2.25h.008v.008H8.25v-.008zm2.25-4.5h.008v.008H10.5v-.008zm0 2.25h.008v.008H10.5V13.5zm0 2.25h.008v.008H10.5v-.008zm2.25-4.5h.008v.008H12.75v-.008zm0 2.25h.008v.008H12.75V13.5zm0 2.25h.008v.008H12.75v-.008zM6 6.75h12M6 6.75A2.25 2.25 0 018.25 4.5h7.5A2.25 2.25 0 0118 6.75M6 6.75v12.75A2.25 2.25 0 008.25 21.75h7.5A2.25 2.25 0 0018 19.5V6.75" /></svg>
+                            <span>BMI Calculator</span>
+                        </button>
+                    </div>
+                    <div class="relative">
+                        <svg class="w-4 h-4 text-[#657166] absolute left-3.5 top-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-16.5-.52c-1.01.143-2.01.317-3 .52m3 0v9.544c0 1.258.826 2.37 2.014 2.632 1.34.296 2.72.483 4.136.564m-6.15-12.74a48.839 48.839 0 016.15-.564m0 0v17.25" /></svg>
+                        <input type="number" step="0.1" id="bmi" name="bmi" min="10" max="60" placeholder="e.g. 21.8" oninput="updateBmiBadge()" required
+                               class="w-full pl-11 pr-4 py-3 bg-white border border-[#CFD6C4] focus:border-[#99CDD8] rounded-2xl text-xs text-[#4B554C] focus:outline-none shadow-sm transition">
+                    </div>
+                    <div id="bmiStatusBadge" class="text-[11px] font-mono hidden pt-1">
+                        <!-- Populated dynamically via updateBmiBadge() -->
+                    </div>
+                </div>
+
+                <!-- Family History -->
+                <div class="space-y-2">
+                    <label for="family_history" class="block font-bold text-[#4B554C] uppercase tracking-wider text-[11px] font-mono">
+                        Family History of Diabetes <span class="text-rose-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <svg class="w-4 h-4 text-[#657166] absolute left-3.5 top-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" /></svg>
+                        <select id="family_history" name="family_history" required
+                                class="w-full pl-11 pr-4 py-3 bg-white border border-[#CFD6C4] focus:border-[#99CDD8] rounded-2xl text-xs text-[#4B554C] focus:outline-none shadow-sm transition">
+                            <option value="">-- Select Family Predisposition --</option>
+                            <option value="no">No (No Known Family Diagnosis)</option>
+                            <option value="yes">Yes (Genetic / Family Predisposition Present)</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Expandable BMI Calculator Drawer with Dual Units (cm vs feet/inches) -->
+            <div id="bmiCalculatorDrawer" class="hidden p-5 rounded-2xl border border-[#CFD6C4] space-y-3.5 text-xs shadow-md bg-[#FAF9F6]">
+                <div class="flex items-center justify-between">
+                    <span class="font-bold text-[#4B554C] block uppercase tracking-wider font-mono">
+                        Instant BMI Calculator
+                    </span>
+                    <div class="flex items-center gap-2 bg-white p-1 rounded-xl border border-[#CFD6C4] text-[10px] shadow-sm">
+                        <button type="button" id="unitMetricBtn" onclick="switchBmiUnit('metric')" class="px-3 py-1 rounded-lg bg-[#657166] text-white font-bold shadow-sm">cm / kg</button>
+                        <button type="button" id="unitImperialBtn" onclick="switchBmiUnit('imperial')" class="px-3 py-1 rounded-lg text-[#657166] hover:text-[#4B554C]">ft &bull; in / kg</button>
+                    </div>
+                </div>
+
+                <!-- Metric Inputs -->
+                <div id="calcMetricInputs" class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[#657166] mb-1 text-[11px]">Height (Centimeters):</label>
+                        <input type="number" id="calcHeightCm" placeholder="165" oninput="liveCalcBmi()" class="w-full px-3.5 py-2.5 bg-white border border-[#CFD6C4] rounded-xl text-[#4B554C] text-xs focus:outline-none focus:border-[#99CDD8] shadow-sm">
+                    </div>
+                    <div>
+                        <label class="block text-[#657166] mb-1 text-[11px]">Weight (Kilograms):</label>
+                        <input type="number" id="calcWeightKg" placeholder="60" oninput="liveCalcBmi()" class="w-full px-3.5 py-2.5 bg-white border border-[#CFD6C4] rounded-xl text-[#4B554C] text-xs focus:outline-none focus:border-[#99CDD8] shadow-sm">
+                    </div>
+                </div>
+
+                <!-- Imperial Inputs -->
+                <div id="calcImperialInputs" class="hidden grid grid-cols-3 gap-3">
+                    <div>
+                        <label class="block text-[#657166] mb-1 text-[11px]">Feet (ft):</label>
+                        <input type="number" id="calcHeightFt" placeholder="5" oninput="liveCalcBmi()" class="w-full px-3.5 py-2.5 bg-white border border-[#CFD6C4] rounded-xl text-[#4B554C] text-xs focus:outline-none focus:border-[#99CDD8] shadow-sm">
+                    </div>
+                    <div>
+                        <label class="block text-[#657166] mb-1 text-[11px]">Inches (in):</label>
+                        <input type="number" id="calcHeightIn" placeholder="5" oninput="liveCalcBmi()" class="w-full px-3.5 py-2.5 bg-white border border-[#CFD6C4] rounded-xl text-[#4B554C] text-xs focus:outline-none focus:border-[#99CDD8] shadow-sm">
+                    </div>
+                    <div>
+                        <label class="block text-[#657166] mb-1 text-[11px]">Weight (kg):</label>
+                        <input type="number" id="calcWeightKgImp" placeholder="60" oninput="liveCalcBmi()" class="w-full px-3.5 py-2.5 bg-white border border-[#CFD6C4] rounded-xl text-[#4B554C] text-xs focus:outline-none focus:border-[#99CDD8] shadow-sm">
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-1">
+                    <div id="calcLiveResult" class="font-mono text-[#4B554C] font-bold text-xs">
+                        Enter height and weight above
+                    </div>
+                    <button type="button" onclick="applyCalculatedBmi()" class="btn-ink-pill px-4 py-2 text-xs font-bold font-heading">
+                        Apply to Form &bull; Save BMI
+                    </button>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-3">
+                <button type="submit" id="submitAnalysisBtn" class="w-full btn-ink-pill py-4 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 font-heading shadow-md tracking-wide">
+                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
+                    <span>Execute Machine Learning Risk Assessment</span>
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+    let activeUnit = 'metric';
+    let computedBmi = null;
+
+    function toggleBmiCalculator() {
+        const drawer = document.getElementById('bmiCalculatorDrawer');
+        drawer.classList.toggle('hidden');
+    }
+
+    function toggleBiometricEditor() {
+        const drawer = document.getElementById('biometricDrawer');
+        drawer.classList.toggle('hidden');
+    }
+
+    function syncBiometrics() {
+        const pattern = document.getElementById('patternSelect').value;
+        const ridge = document.getElementById('ridgeInput').value;
+        document.getElementById('fp_type_hidden').value = pattern;
+        document.getElementById('ridge_count_hidden').value = ridge;
+        document.getElementById('summaryPatternDisplay').textContent = pattern.toUpperCase();
+        document.getElementById('summaryRidgeDisplay').textContent = ridge;
+    }
+
+    function switchBmiUnit(unit) {
+        activeUnit = unit;
+        if (unit === 'metric') {
+            document.getElementById('calcMetricInputs').classList.remove('hidden');
+            document.getElementById('calcImperialInputs').classList.add('hidden');
+            document.getElementById('unitMetricBtn').className = 'px-3 py-1 rounded-lg bg-[#657166] text-white font-bold shadow-sm';
+            document.getElementById('unitImperialBtn').className = 'px-3 py-1 rounded-lg text-[#657166] hover:text-[#4B554C]';
+        } else {
+            document.getElementById('calcMetricInputs').classList.add('hidden');
+            document.getElementById('calcImperialInputs').classList.remove('hidden');
+            document.getElementById('unitMetricBtn').className = 'px-3 py-1 rounded-lg text-[#657166] hover:text-[#4B554C]';
+            document.getElementById('unitImperialBtn').className = 'px-3 py-1 rounded-lg bg-[#657166] text-white font-bold shadow-sm';
+        }
+        liveCalcBmi();
+    }
+
+    function liveCalcBmi() {
+        let heightM = 0;
+        let weightKg = 0;
+
+        if (activeUnit === 'metric') {
+            const hCm = parseFloat(document.getElementById('calcHeightCm').value);
+            weightKg = parseFloat(document.getElementById('calcWeightKg').value);
+            if (hCm > 50) heightM = hCm / 100.0;
+        } else {
+            const ft = parseFloat(document.getElementById('calcHeightFt').value) || 0;
+            const inc = parseFloat(document.getElementById('calcHeightIn').value) || 0;
+            weightKg = parseFloat(document.getElementById('calcWeightKgImp').value);
+            const totalInches = (ft * 12) + inc;
+            if (totalInches > 20) heightM = totalInches * 0.0254;
+        }
+
+        if (heightM > 0.5 && weightKg > 10) {
+            computedBmi = (weightKg / (heightM * heightM)).toFixed(1);
+            let cat = 'Normal Weight';
+            let color = 'text-emerald-700';
+            if (computedBmi < 18.5) { cat = 'Underweight'; color = 'text-[#99CDD8]'; }
+            else if (computedBmi >= 25.0 && computedBmi < 30.0) { cat = 'Overweight'; color = 'text-amber-700'; }
+            else if (computedBmi >= 30.0) { cat = 'Obese'; color = 'text-rose-700'; }
+
+            document.getElementById('calcLiveResult').innerHTML = `Calculated BMI: <span class="${color}">${computedBmi} kg/m² (${cat})</span>`;
+        } else {
+            computedBmi = null;
+            document.getElementById('calcLiveResult').textContent = 'Enter height and weight above';
+        }
+    }
+
+    function applyCalculatedBmi() {
+        if (computedBmi) {
+            document.getElementById('bmi').value = computedBmi;
+            updateBmiBadge();
+            toggleBmiCalculator();
+        } else {
+            alert('Please enter valid height and weight values to calculate BMI.');
+        }
+    }
+
+    function updateBmiBadge() {
+        const val = parseFloat(document.getElementById('bmi').value);
+        const badge = document.getElementById('bmiStatusBadge');
+        if (isNaN(val) || val <= 0) {
+            badge.classList.add('hidden');
+            return;
+        }
+        badge.classList.remove('hidden');
+        if (val < 18.5) {
+            badge.innerHTML = `<span class="text-[#657166] bg-[#99CDD8]/20 border border-[#99CDD8] px-3 py-1 rounded-full inline-flex items-center gap-1 font-semibold">ℹ Underweight (${val})</span>`;
+        } else if (val <= 24.9) {
+            badge.innerHTML = `<span class="text-emerald-800 bg-[#DAEBE3] border border-[#CFD6C4] px-3 py-1 rounded-full inline-flex items-center gap-1 font-semibold">✓ Healthy Weight Range (${val})</span>`;
+        } else if (val <= 29.9) {
+            badge.innerHTML = `<span class="text-amber-900 bg-[#FDE8D3] border border-[#F3C3B2] px-3 py-1 rounded-full inline-flex items-center gap-1 font-semibold">⚠ Overweight Range (${val})</span>`;
+        } else {
+            badge.innerHTML = `<span class="text-rose-900 bg-[#F3C3B2]/40 border border-[#F3C3B2] px-3 py-1 rounded-full inline-flex items-center gap-1 font-semibold">⚠ Elevated Obese Range (${val})</span>`;
+        }
+    }
+
+    function loadClinicalPreset(type) {
+        if (type === 'healthy') {
+            document.getElementById('age').value = '22';
+            document.getElementById('bmi').value = '21.5';
+            document.getElementById('family_history').value = 'no';
+            document.getElementById('patternSelect').value = 'loop';
+            document.getElementById('ridgeInput').value = '22';
+        } else if (type === 'moderate') {
+            document.getElementById('age').value = '45';
+            document.getElementById('bmi').value = '27.2';
+            document.getElementById('family_history').value = 'yes';
+            document.getElementById('patternSelect').value = 'loop';
+            document.getElementById('ridgeInput').value = '16';
+        } else if (type === 'high') {
+            document.getElementById('age').value = '58';
+            document.getElementById('bmi').value = '33.5';
+            document.getElementById('family_history').value = 'yes';
+            document.getElementById('patternSelect').value = 'whorl';
+            document.getElementById('ridgeInput').value = '10';
+        }
+        syncBiometrics();
+        updateBmiBadge();
+    }
+</script>
+{% endblock %}

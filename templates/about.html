@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Scientific Basis of Dermatoglyphics &bull; FingerDiab AI{% endblock %}
+
+{% block content %}
+<div class="py-10 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8">
+
+    <!-- Header Section -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#CFD6C4]/80 pb-6">
+        <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DAEBE3] border border-[#CFD6C4] text-[11px] font-bold text-[#4B554C] uppercase tracking-wider font-mono">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                <span>Clinical &amp; Embryological Foundations</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-[#4B554C] mt-2.5 font-heading tracking-tight">
+                Dermatoglyphics &amp; Diabetes Susceptibility
+            </h1>
+            <p class="text-xs sm:text-sm text-[#657166] mt-1 max-w-2xl">
+                The biological connection between fetal ectodermal ridge morphogenesis and endocrine pancreatic development.
+            </p>
+        </div>
+
+        <div>
+            <a href="{{ url_for('upload_page') }}" class="btn-ink-pill px-5 py-2.5 text-xs flex items-center gap-2 shadow-md">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+                <span>Launch Clinical Screen</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Biological Hypothesis Card -->
+    <div class="bg-white/90 p-6 sm:p-8 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-4">
+        <h2 class="text-base sm:text-lg font-bold text-[#4B554C] font-heading flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#99CDD8]"></span>
+            <span>The Shared Embryonic Timeline (Weeks 10 &ndash; 24)</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-[#657166] leading-relaxed">
+            Dermatoglyphic patterns (epidermal friction ridges on fingertips) differentiate between the 10th and 24th weeks of intrauterine gestation. During this exact embryological phase, the fetal endocrine pancreas also develops its beta-islet cells responsible for insulin secretion. Genetic anomalies or intrauterine glycemic perturbations simultaneously alter epidermal ridge formations and future metabolic resilience.
+        </p>
+        <p class="text-xs sm:text-sm text-[#657166] leading-relaxed">
+            Once formed in utero, epidermal friction ridges remain permanent and unchanging throughout an individual's lifetime, serving as an immutable anatomical window into early fetal developmental integrity.
+        </p>
+    </div>
+
+    <!-- 3 Dermatoglyphic Patterns -->
+    <div class="space-y-4">
+        <h2 class="text-base font-bold text-[#4B554C] font-heading flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+            <span>Primary Dermatoglyphic Pattern Archetypes</span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- Arch -->
+            <div class="bg-white/90 p-6 rounded-[24px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-3">
+                <div class="w-10 h-10 rounded-2xl bg-[#DAEBE3] text-emerald-900 border border-[#CFD6C4] flex items-center justify-center font-bold">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25H12" />
+                    </svg>
+                </div>
+                <h3 class="text-sm font-bold text-[#4B554C] font-heading">Arch Archetype</h3>
+                <p class="text-xs text-[#657166] leading-relaxed">
+                    Ridges enter from one side and exit the opposite side with a gentle upward curve. Characterized by zero triradii and low ridge counts (8 &ndash; 14).
+                </p>
+            </div>
+
+            <!-- Loop -->
+            <div class="bg-white/90 p-6 rounded-[24px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-3">
+                <div class="w-10 h-10 rounded-2xl bg-[#99CDD8]/40 text-[#4B554C] border border-[#CFD6C4] flex items-center justify-center font-bold">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                    </svg>
+                </div>
+                <h3 class="text-sm font-bold text-[#4B554C] font-heading">Loop Archetype</h3>
+                <p class="text-xs text-[#657166] leading-relaxed">
+                    Ridges curve backward onto themselves forming a core loop with a single triradius and standard ridge counts (15 &ndash; 22). Most prevalent demographic pattern.
+                </p>
+            </div>
+
+            <!-- Whorl -->
+            <div class="bg-white/90 p-6 rounded-[24px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-3">
+                <div class="w-10 h-10 rounded-2xl bg-[#FDE8D3] text-[#4B554C] border border-[#CFD6C4] flex items-center justify-center font-bold">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a3.75 3.75 0 11-7.32 0" />
+                    </svg>
+                </div>
+                <h3 class="text-sm font-bold text-[#4B554C] font-heading">Whorl Archetype</h3>
+                <p class="text-xs text-[#657166] leading-relaxed">
+                    Concentric circular rings or spiral whorls with two distinct triradii and higher dermal ridge counts (18 &ndash; 30). Clinically correlated with metabolic variations.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Engineering Architecture -->
+    <div class="bg-white/90 p-6 sm:p-8 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] space-y-4">
+        <h2 class="text-base font-bold text-[#4B554C] font-heading flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#F3C3B2]"></span>
+            <span>Platform Engineering Stack &amp; Development Governance</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
+            <div class="bg-[#FAF9F6] p-5 rounded-2xl border border-[#CFD6C4] space-y-2">
+                <span class="text-emerald-900 font-bold uppercase tracking-wider block font-mono">Technological Stack</span>
+                <ul class="space-y-1.5 text-[#657166]">
+                    <li><strong class="text-[#4B554C]">Computer Vision:</strong> OpenCV, Zhang-Suen Morphological Skeletonization</li>
+                    <li><strong class="text-[#4B554C]">Machine Learning:</strong> Scikit-Learn (Random Forest, SVM RBF, Gradient Boosting)</li>
+                    <li><strong class="text-[#4B554C]">Backend Server:</strong> Python Flask, SQLite Database Engine</li>
+                    <li><strong class="text-[#4B554C]">Frontend Architecture:</strong> Tailwind CSS, Google Fonts, Chart.js</li>
+                </ul>
+            </div>
+
+            <div class="bg-[#FAF9F6] p-5 rounded-2xl border border-[#CFD6C4] space-y-2">
+                <span class="text-[#4B554C] font-bold uppercase tracking-wider block font-mono">Initiative Information</span>
+                <p class="text-[#657166] leading-relaxed">
+                    Engineered by the <strong class="text-[#4B554C]">Batch-5 Healthcare Engineering Initiative</strong> as an intelligent, non-invasive early metabolic risk screening framework designed for clinical utility.
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

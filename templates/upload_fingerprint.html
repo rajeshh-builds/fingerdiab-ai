@@ -1,0 +1,497 @@
+{% extends "base.html" %}
+
+{% block title %}Step 1: Dermatoglyphic Biometric Scan &bull; FingerDiab AI{% endblock %}
+
+{% block content %}
+<div class="py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto space-y-8">
+
+    <!-- Stepper Navigation (Super-Soft Organic Capsules) -->
+    <div class="max-w-2xl mx-auto">
+        <div class="flex items-center justify-between text-xs font-mono">
+            
+            <!-- Step 1: Active -->
+            <div class="flex items-center space-x-2.5 text-[#4B554C] font-bold">
+                <span class="w-8 h-8 rounded-2xl bg-[#657166] text-white flex items-center justify-center font-black text-xs shadow-sm">
+                    1
+                </span>
+                <span class="tracking-wide">Biometric Scan</span>
+            </div>
+
+            <div class="flex-1 h-0.5 bg-[#CFD6C4] mx-3.5"></div>
+
+            <!-- Step 2 -->
+            <div class="flex items-center space-x-2.5 text-[#657166]/60 font-medium">
+                <span class="w-8 h-8 rounded-2xl bg-[#DAEBE3] border border-[#CFD6C4] text-[#657166] flex items-center justify-center font-bold text-xs">
+                    2
+                </span>
+                <span>Clinical Vitals</span>
+            </div>
+
+            <div class="flex-1 h-0.5 bg-[#CFD6C4]/60 mx-3.5"></div>
+
+            <!-- Step 3 -->
+            <div class="flex items-center space-x-2.5 text-[#657166]/60 font-medium">
+                <span class="w-8 h-8 rounded-2xl bg-[#DAEBE3] border border-[#CFD6C4] text-[#657166] flex items-center justify-center font-bold text-xs">
+                    3
+                </span>
+                <span>Diagnostic Report</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Main Acquisition Frame -->
+    <div class="p-6 sm:p-10 rounded-[32px] bg-white/85 border border-[#CFD6C4] shadow-soft-card relative overflow-hidden backdrop-blur-xl">
+        
+        <!-- Header -->
+        <div class="text-center max-w-xl mx-auto space-y-3 mb-8">
+            <span class="text-[11px] font-mono font-bold text-[#4B554C] uppercase tracking-widest bg-[#DAEBE3] border border-[#CFD6C4] px-4 py-1.5 rounded-full inline-flex items-center gap-2 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-[#99CDD8] animate-pulse"></span>
+                <span>Stage 1 &bull; Optical Ingestion &amp; Ridge Topology</span>
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-[#4B554C] tracking-tight font-heading">
+                Upload Dermatoglyphic Sample
+            </h1>
+            <p class="text-xs sm:text-sm text-[#657166] leading-relaxed max-w-lg mx-auto">
+                Ingest high-resolution epidermal ridge scans. Automated OpenCV filters will extract ridge count, archetype, and minutiae endpoints.
+            </p>
+        </div>
+
+        <!-- Preset Archetype Buttons -->
+        <div class="mb-8 p-4 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] space-y-3 shadow-inner">
+            <div class="flex items-center justify-between text-xs">
+                <span class="font-mono text-[#4B554C] font-bold uppercase tracking-wider text-[11px] flex items-center gap-1.5">
+                    <svg class="w-4 h-4 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.942A4.5 4.5 0 0115.888 17H8.112a4.5 4.5 0 01-2.342-.758L4.2 15.3" /></svg>
+                    <span>1-Click Verified Research Archetypes:</span>
+                </span>
+                <span class="text-[#657166]/70 text-[10px] font-mono hidden sm:inline">Immediate simulation without external image files</span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs">
+                <button type="button" onclick="loadSampleImage('arch')" class="px-3.5 py-2.5 rounded-2xl bg-white hover:bg-[#DAEBE3]/50 border border-[#CFD6C4] text-[#4B554C] text-left transition flex items-center gap-2 group shadow-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-[#99CDD8]"></span>
+                    <div>
+                        <div class="font-bold text-[11px] text-[#4B554C]">Preset 1: Arch Pattern</div>
+                        <div class="text-[10px] text-[#657166] font-mono">Continuous waves &bull; 14-16 Ridges</div>
+                    </div>
+                </button>
+                <button type="button" onclick="loadSampleImage('loop')" class="px-3.5 py-2.5 rounded-2xl bg-white hover:bg-[#DAEBE3]/50 border border-[#CFD6C4] text-[#4B554C] text-left transition flex items-center gap-2 group shadow-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                    <div>
+                        <div class="font-bold text-[11px] text-[#4B554C]">Preset 2: Loop Pattern</div>
+                        <div class="text-[10px] text-[#657166] font-mono">Triradial delta &bull; 18-22 Ridges</div>
+                    </div>
+                </button>
+                <button type="button" onclick="loadSampleImage('whorl')" class="px-3.5 py-2.5 rounded-2xl bg-white hover:bg-[#FDE8D3] border border-[#CFD6C4] text-[#4B554C] text-left transition flex items-center gap-2 group shadow-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                    <div>
+                        <div class="font-bold text-[11px] text-[#4B554C]">Preset 3: Whorl Pattern</div>
+                        <div class="text-[10px] text-[#657166] font-mono">Concentric loops &bull; 8-12 Ridges</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+
+            <!-- Left: Dropzone -->
+            <div class="space-y-4">
+                
+                <form id="fingerprintUploadForm" action="{{ url_for('extract_features_ajax') }}" method="POST" enctype="multipart/form-data">
+                    <input type="file" id="fingerprintImageInput" name="fingerprint_image" accept="image/png, image/jpeg, image/bmp, image/tiff" class="hidden">
+                    
+                    <div id="dropZone" class="group relative rounded-2xl border-2 border-dashed border-[#CFD6C4] hover:border-[#99CDD8] bg-[#FAF9F6] hover:bg-[#DAEBE3]/20 p-8 text-center cursor-pointer transition-all duration-300">
+                        <div class="space-y-3">
+                            <div class="w-14 h-14 rounded-2xl bg-white border border-[#CFD6C4] text-[#657166] flex items-center justify-center mx-auto shadow-sm group-hover:scale-105 transition">
+                                <svg class="w-7 h-7 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.346" />
+                                </svg>
+                            </div>
+                            <div>
+                                <span class="text-xs font-bold text-[#4B554C] block tracking-wide font-heading">
+                                    Click or Drag Epidermal Scan Image
+                                </span>
+                                <span class="text-[11px] text-[#657166] block mt-0.5">
+                                    PNG, JPG, BMP, TIFF (min 300 DPI recommended)
+                                </span>
+                            </div>
+                            <div id="selectedFileNameBadge" class="hidden pt-1">
+                                <span id="selectedFileNameText" class="text-[11px] font-mono text-[#4B554C] bg-white border border-[#CFD6C4] px-3 py-1 rounded-full inline-block shadow-sm"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" id="extractFeaturesBtn" class="w-full btn-ink-pill py-3.5 text-xs sm:text-sm font-bold flex items-center justify-center gap-2 font-heading shadow-md tracking-wide">
+                            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                            <span>Execute OpenCV Optical Processing</span>
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- Right: Preview & Live Telemetry -->
+            <div class="space-y-4">
+                
+                <div class="rounded-2xl border border-[#CFD6C4] bg-[#FAF9F6] p-4 relative overflow-hidden shadow-sm">
+                    
+                    <div class="flex items-center justify-between pb-3 border-b border-[#CFD6C4] text-xs">
+                        <span class="font-mono text-[#4B554C] font-bold text-[11px] uppercase tracking-wider flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-[#99CDD8]"></span>
+                            <span>Viewport Sensor Telemetry</span>
+                        </span>
+                        <span id="scanStatusBadge" class="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-white border border-[#CFD6C4] text-[#657166] shadow-sm">
+                            AWAITING INGESTION
+                        </span>
+                    </div>
+
+                    <!-- Image Viewport with Scanning Overlay -->
+                    <div class="relative h-64 rounded-xl bg-white border border-[#CFD6C4] overflow-hidden my-3 flex items-center justify-center">
+                        
+                        <img id="imagePreview" src="" alt="Fingerprint Preview" class="hidden max-h-full max-w-full object-contain filter contrast-125">
+                        
+                        <div id="previewPlaceholder" class="text-center space-y-2 p-6">
+                            <svg class="w-10 h-10 text-[#CFD6C4] mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
+                            </svg>
+                            <span class="text-xs text-[#657166]/80 block font-mono">No scan loaded in active optical chamber</span>
+                        </div>
+
+                        <!-- Scanning Line Animation -->
+                        <div id="scannerOverlay" class="hidden absolute inset-0 bg-white/80 backdrop-blur-sm flex flex-col items-center justify-center space-y-3 z-20">
+                            <div class="w-10 h-10 border-2 border-[#657166] border-t-transparent rounded-full animate-spin"></div>
+                            <span class="text-xs font-mono text-[#4B554C] font-bold uppercase tracking-wider animate-pulse">
+                                Executing 5-Stage Morphological Pass...
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <!-- Extracted Feature Telemetry Pill Box -->
+                    <div id="extractedResultCard" class="hidden space-y-3 pt-2 text-xs">
+                        
+                        <div class="grid grid-cols-2 gap-2 text-xs font-mono">
+                            <div class="p-2.5 rounded-xl bg-white border border-[#CFD6C4] shadow-sm">
+                                <span class="text-[10px] text-[#657166] block">PATTERN ARCHETYPE</span>
+                                <span id="resFpType" class="text-sm font-bold text-[#4B554C] uppercase">--</span>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-white border border-[#CFD6C4] shadow-sm">
+                                <span class="text-[10px] text-[#657166] block">RIDGE COUNT</span>
+                                <span id="resRidgeCount" class="text-sm font-bold text-emerald-600">--</span>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-white border border-[#CFD6C4] shadow-sm">
+                                <span class="text-[10px] text-[#657166] block">CV CONFIDENCE</span>
+                                <span id="resConfidence" class="text-sm font-bold text-[#4B554C]">--</span>
+                            </div>
+                            <div class="p-2.5 rounded-xl bg-white border border-[#CFD6C4] shadow-sm">
+                                <span class="text-[10px] text-[#657166] block">MINUTIAE NODES</span>
+                                <span id="resMinutiae" class="text-sm font-bold text-[#99CDD8]">--</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 CTA -->
+                        <a id="proceedStep2Btn" href="{{ url_for('show_prediction_form') }}" class="w-full mt-3 btn-ink-pill py-3 text-xs font-bold flex items-center justify-center gap-2 font-heading shadow-md">
+                            <span>Proceed to Step 2: Clinical Vitals</span>
+                            <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 5 Stages Computer Vision Visualizer Grid -->
+        <div id="stagesDisplayContainer" class="hidden mt-10 pt-8 border-t border-[#CFD6C4] space-y-4">
+            
+            <div class="flex items-center justify-between">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-[#4B554C] flex items-center gap-2 font-heading">
+                    <svg class="w-4 h-4 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>
+                    <span>5-Stage Computer Vision Image Processing Pipeline</span>
+                </h3>
+                <span class="text-[11px] font-mono text-[#657166] font-semibold hidden sm:inline">Zhang-Suen 1-Pixel Skeleton &bull; Minutiae Marked</span>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3.5 text-center">
+                
+                <div class="p-3 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] shadow-sm">
+                    <div class="h-28 rounded-xl bg-white flex items-center justify-center overflow-hidden mb-2 p-1 border border-[#CFD6C4]">
+                        <img id="stageImgOriginal" src="" alt="Stage 1: Raw Input" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <span class="block text-xs font-semibold text-[#4B554C]">1. Raw Input</span>
+                    <span class="block text-[10px] text-[#657166] font-mono">Normalized Grayscale</span>
+                </div>
+
+                <div class="p-3 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] shadow-sm">
+                    <div class="h-28 rounded-xl bg-white flex items-center justify-center overflow-hidden mb-2 p-1 border border-[#CFD6C4]">
+                        <img id="stageImgEqualized" src="" alt="Stage 2: CLAHE Contrast" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <span class="block text-xs font-semibold text-[#4B554C]">2. CLAHE Contrast</span>
+                    <span class="block text-[10px] text-[#657166] font-mono">Ridge Equalization</span>
+                </div>
+
+                <div class="p-3 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] shadow-sm">
+                    <div class="h-28 rounded-xl bg-white flex items-center justify-center overflow-hidden mb-2 p-1 border border-[#CFD6C4]">
+                        <img id="stageImgBinary" src="" alt="Stage 3: Otsu Binarized" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <span class="block text-xs font-semibold text-[#4B554C]">3. Otsu Binarized</span>
+                    <span class="block text-[10px] text-[#657166] font-mono">Optimal Threshold</span>
+                </div>
+
+                <div class="p-3 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] shadow-sm">
+                    <div class="h-28 rounded-xl bg-white flex items-center justify-center overflow-hidden mb-2 p-1 border border-[#CFD6C4]">
+                        <img id="stageImgSkeleton" src="" alt="Stage 4: Thinned Skeleton" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <span class="block text-xs font-semibold text-[#4B554C]">4. Thinned Skeleton</span>
+                    <span class="block text-[10px] text-[#657166] font-mono">1-Pixel Topology</span>
+                </div>
+
+                <div class="p-3 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] shadow-sm col-span-2 sm:col-span-1">
+                    <div class="h-28 rounded-xl bg-white flex items-center justify-center overflow-hidden mb-2 p-1 border border-[#CFD6C4]">
+                        <img id="stageImgMinutiae" src="" alt="Stage 5: Minutiae Map" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <span class="block text-xs font-semibold text-[#4B554C]">5. Minutiae Map</span>
+                    <span class="block text-[10px] text-[#657166] font-mono">Endings &amp; Bifurcations</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Synthetic Archetype Generator & Client Scripts -->
+<script>
+    function generateSyntheticFingerprintCanvas(type) {
+        const canvas = document.createElement('canvas');
+        canvas.width = 300;
+        canvas.height = 300;
+        const ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, 300, 300);
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 2.5;
+
+        const cx = 150, cy = 150;
+
+        if (type === 'whorl') {
+            for (let r = 10; r < 130; r += 7) {
+                ctx.beginPath();
+                ctx.arc(cx, cy, r, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+        } else if (type === 'arch') {
+            for (let y = 30; y < 270; y += 8) {
+                ctx.beginPath();
+                ctx.moveTo(30, y + 40);
+                ctx.quadraticCurveTo(cx, y - 50, 270, y + 40);
+                ctx.stroke();
+            }
+        } else { // Loop
+            for (let r = 15; r < 120; r += 7) {
+                ctx.beginPath();
+                ctx.ellipse(cx - 20, cy, r * 0.8, r * 1.1, Math.PI / 4, 0, Math.PI * 1.8);
+                ctx.stroke();
+            }
+        }
+
+        return new Promise(resolve => {
+            canvas.toBlob(blob => {
+                const file = new File([blob], `sample_${type}.png`, { type: 'image/png' });
+                resolve(file);
+            }, 'image/png');
+        });
+    }
+
+    async function loadSampleImage(type) {
+        const file = await generateSyntheticFingerprintCanvas(type);
+        const container = new DataTransfer();
+        container.items.add(file);
+        const input = document.getElementById('fingerprintImageInput');
+        if (input) {
+            input.files = container.files;
+        }
+        if (typeof window.handleFileSelectGlobal === 'function') {
+            window.handleFileSelectGlobal(file);
+        }
+    }
+
+    window.loadSampleImage = loadSampleImage;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropZone = document.getElementById('dropZone');
+        const input = document.getElementById('fingerprintImageInput');
+        const preview = document.getElementById('imagePreview');
+        const placeholder = document.getElementById('previewPlaceholder');
+        const form = document.getElementById('fingerprintUploadForm');
+        const overlay = document.getElementById('scannerOverlay');
+        const resultCard = document.getElementById('extractedResultCard');
+        const statusBadge = document.getElementById('scanStatusBadge');
+        const fileNameBadge = document.getElementById('selectedFileNameBadge');
+        const fileNameText = document.getElementById('selectedFileNameText');
+
+        function handleFileSelect(file) {
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                if (preview) {
+                    preview.src = e.target.result;
+                    preview.classList.remove('hidden');
+                }
+                if (placeholder) {
+                    placeholder.classList.add('hidden');
+                }
+                if (statusBadge) {
+                    statusBadge.textContent = 'IMAGE READY';
+                    statusBadge.className = 'text-[10px] font-mono px-2.5 py-1 rounded-full bg-[#DAEBE3] border border-[#CFD6C4] text-[#4B554C] font-semibold';
+                }
+            };
+            reader.readAsDataURL(file);
+
+            if (fileNameText) {
+                fileNameText.textContent = `${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+            }
+            if (fileNameBadge) {
+                fileNameBadge.classList.remove('hidden');
+            }
+        }
+
+        window.handleFileSelectGlobal = handleFileSelect;
+
+        if (dropZone) {
+            dropZone.addEventListener('click', () => {
+                if (input) input.click();
+            });
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropZone.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    dropZone.classList.add('border-[#99CDD8]', 'bg-[#DAEBE3]/30');
+                }, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropZone.addEventListener(eventName, (e) => {
+                    e.preventDefault();
+                    dropZone.classList.remove('border-[#99CDD8]', 'bg-[#DAEBE3]/30');
+                }, false);
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                if (files && files.length > 0) {
+                    if (input) input.files = files;
+                    handleFileSelect(files[0]);
+                }
+            });
+        }
+
+        if (input) {
+            input.addEventListener('change', () => {
+                if (input.files && input.files.length > 0) {
+                    handleFileSelect(input.files[0]);
+                }
+            });
+        }
+
+        // Form Submit Handler
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (!input.files || input.files.length === 0) {
+                alert('Please upload a fingerprint image or select a research archetype.');
+                return;
+            }
+
+            overlay.classList.remove('hidden');
+            statusBadge.textContent = 'EXTRACTING...';
+            statusBadge.className = 'text-[10px] font-mono px-2.5 py-1 rounded-full bg-amber-50 border border-amber-200 text-amber-800 animate-pulse font-semibold';
+
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(res => {
+                if (res.status === 401) {
+                    alert('Session expired. Redirecting to login...');
+                    window.location.href = "{{ url_for('login_page') }}";
+                    throw new Error('Unauthenticated');
+                }
+                return res.json();
+            })
+            .then(data => {
+                if (data.session_expired) {
+                    alert('Session expired. Redirecting to login...');
+                    window.location.href = "{{ url_for('login_page') }}";
+                    return;
+                }
+                if (data.success) {
+                    // Populate Telemetry
+                    document.getElementById('resFpType').textContent = data.fingerprint_type;
+                    document.getElementById('resRidgeCount').textContent = data.ridge_count + ' ridges';
+                    document.getElementById('resConfidence').textContent = data.confidence.toFixed(1) + '%';
+                    
+                    const minutiaeVal = (data.terminations_count || 0) + (data.bifurcations_count || 0);
+                    const minutiaeEl = document.getElementById('resMinutiae');
+                    if (minutiaeEl) {
+                        minutiaeEl.textContent = minutiaeVal > 0 ? minutiaeVal + ' points' : 'Active';
+                    }
+
+                    // Populate 5-stage images
+                    if (data.stages) {
+                        const stages = data.stages;
+                        const ensureDataUri = (v) => (!v ? '' : (v.startsWith('data:') ? v : `data:image/png;base64,${v}`));
+
+                        const setStage = (id, val) => {
+                            const el = document.getElementById(id);
+                            if (el && val) {
+                                el.src = ensureDataUri(val);
+                            }
+                        };
+
+                        setStage('stageImgOriginal', stages.original);
+                        setStage('stageImgEqualized', stages.equalized);
+                        setStage('stageImgBinary', stages.binary);
+                        setStage('stageImgSkeleton', stages.skeleton);
+                        setStage('stageImgMinutiae', stages.minutiae);
+
+                        if (stages.original) {
+                            preview.src = ensureDataUri(stages.original);
+                            preview.classList.remove('hidden');
+                            placeholder.classList.add('hidden');
+                        }
+
+                        document.getElementById('stagesDisplayContainer').classList.remove('hidden');
+                    }
+
+                    resultCard.classList.remove('hidden');
+                    statusBadge.textContent = 'VERIFIED';
+                    statusBadge.className = 'text-[10px] font-mono px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 font-semibold';
+                } else {
+                    alert('Extraction failed: ' + (data.error || 'Unknown error occurred.'));
+                    statusBadge.textContent = 'FAILED';
+                    statusBadge.className = 'text-[10px] font-mono px-2.5 py-1 rounded-full bg-rose-50 border border-rose-200 text-rose-800 font-semibold';
+                }
+            })
+            .catch(err => {
+                if (err.message !== 'Unauthenticated') {
+                    alert('Extraction pipeline error: ' + err);
+                }
+            })
+            .finally(() => {
+                overlay.classList.add('hidden');
+            });
+        });
+    });
+</script>
+{% endblock %}

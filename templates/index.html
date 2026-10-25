@@ -1,0 +1,641 @@
+{% extends "base.html" %}
+
+{% block title %}FingerDiab AI &bull; Corporate Biometric Healthcare Platform{% endblock %}
+
+{% block content %}
+<div class="space-y-20 sm:space-y-28 py-8 sm:py-14">
+
+    <!-- HERO SECTION: Tranquil Organic Modernism + Soft Healthcare Aesthetic -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        
+        <!-- Ambient Diffuse Pastel Mesh Behind Hero -->
+        <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[720px] h-[340px] bg-gradient-to-r from-[#99CDD8]/30 via-[#DAEBE3]/40 to-[#FDE8D3]/35 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+
+        <div class="text-center max-w-4xl mx-auto space-y-6 pt-4">
+            
+            <!-- Category Badge / Eyebrow -->
+            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/90 border border-[#CFD6C4] text-[#657166] text-xs font-semibold shadow-soft-pill backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+                <span class="tracking-wider uppercase text-[11px] font-mono font-bold">Your Health, Our Priority &bull; Clinical AI Screening v1.0</span>
+            </div>
+
+            <!-- Compassionate Corporate Headline -->
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#4B554C] leading-[1.1] font-heading">
+                Compassionate Care, <br class="hidden sm:inline" />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#657166] via-[#4B554C] to-[#657166]">Advanced Biometric AI.</span>
+            </h1>
+
+            <!-- Professional Subhead -->
+            <p class="text-base sm:text-lg text-[#657166] font-normal leading-relaxed max-w-2xl mx-auto">
+                FingerDiab combines non-invasive dermatoglyphic epidermal ridge metrics with clinical physiological indicators to deliver instant, certified diabetes risk screening without painful blood draws.
+            </p>
+
+            <!-- Dual Pill CTAs -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                <a href="{{ url_for('upload_page') }}" class="btn-ink-pill w-full sm:w-auto inline-flex items-center justify-center gap-2 text-sm px-8 py-3.5 shadow-soft-pill hover:shadow-lg transition">
+                    <span>Book Clinical Screening</span>
+                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                </a>
+                
+                <a href="{{ url_for('simulator_page') }}" class="btn-soft-pill w-full sm:w-auto inline-flex items-center justify-center gap-2 text-sm px-6 py-3.5">
+                    <svg class="w-4 h-4 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" /></svg>
+                    <span>Interactive Risk Simulator</span>
+                </a>
+            </div>
+
+            <!-- Value Proposition Capsule Bar -->
+            <div class="inline-flex flex-wrap items-center justify-center gap-y-2 py-2 px-5 rounded-full bg-white/80 border border-[#CFD6C4] text-xs font-mono text-[#657166] shadow-sm">
+                <span class="flex items-center gap-1.5 px-2 text-[#4B554C] font-semibold">
+                    <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                    <span>99.5% Cross-Validated Accuracy</span>
+                </span>
+                <span class="hidden sm:inline text-[#CFD6C4] font-bold">|</span>
+                <span class="flex items-center gap-1.5 px-2 text-[#4B554C] font-semibold">
+                    <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                    <span>Non-Invasive (Zero Blood Draw)</span>
+                </span>
+                <span class="hidden sm:inline text-[#CFD6C4] font-bold">|</span>
+                <span class="flex items-center gap-1.5 px-2 text-[#4B554C] font-semibold">
+                    <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                    <span>Instant &lt; 1.2s Real-Time Inference</span>
+                </span>
+            </div>
+
+        </div>
+
+        <!-- FLOATING QUICK-SCREENING ACTION BAR (Direct from Template 2, Super-Soft Theme) -->
+        <div class="max-w-5xl mx-auto mt-10 mb-8 bg-white/90 backdrop-blur-2xl border border-[#CFD6C4] rounded-3xl sm:rounded-full p-2.5 sm:p-2 shadow-soft-card">
+            <form action="{{ url_for('upload_page') }}" method="GET" class="grid grid-cols-1 sm:grid-cols-4 gap-2 sm:gap-0 items-center">
+                
+                <!-- Field 1: Dermatoglyphic Pattern -->
+                <div class="px-5 py-2.5 sm:border-r border-[#CFD6C4] flex items-center gap-3">
+                    <span class="w-9 h-9 rounded-full bg-[#DAEBE3] flex items-center justify-center text-[#4B554C] shrink-0 border border-[#CFD6C4]">
+                        <svg class="w-4.5 h-4.5 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.346" />
+                        </svg>
+                    </span>
+                    <div class="min-w-0 flex-1">
+                        <div class="text-[10px] font-mono uppercase tracking-wider text-[#657166] font-bold">Pattern Type</div>
+                        <select name="preset_pattern" class="bg-transparent text-xs font-semibold text-[#4B554C] focus:outline-none w-full cursor-pointer pr-2">
+                            <option value="loop" class="bg-white text-[#4B554C]">Loop (Typical)</option>
+                            <option value="whorl" class="bg-white text-[#4B554C]">Whorl (Complex)</option>
+                            <option value="arch" class="bg-white text-[#4B554C]">Arch (Simple)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Field 2: Patient Age Group -->
+                <div class="px-5 py-2.5 sm:border-r border-[#CFD6C4] flex items-center gap-3">
+                    <span class="w-9 h-9 rounded-full bg-[#FDE8D3] flex items-center justify-center text-[#4B554C] shrink-0 border border-[#F3C3B2]/50">
+                        <svg class="w-4.5 h-4.5 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.253 3.75m3 0h16.5m-16.5 0v11.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V7.5M3.75 7.5h16.5" />
+                        </svg>
+                    </span>
+                    <div class="min-w-0 flex-1">
+                        <div class="text-[10px] font-mono uppercase tracking-wider text-[#657166] font-bold">Age Bracket</div>
+                        <select name="age_bracket" class="bg-transparent text-xs font-semibold text-[#4B554C] focus:outline-none w-full cursor-pointer pr-2">
+                            <option value="young" class="bg-white text-[#4B554C]">18 &ndash; 35 yrs</option>
+                            <option value="middle" class="bg-white text-[#4B554C]">36 &ndash; 50 yrs</option>
+                            <option value="senior" class="bg-white text-[#4B554C]">51+ yrs</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Field 3: Clinical Priority -->
+                <div class="px-5 py-2.5 sm:border-r border-[#CFD6C4] flex items-center gap-3">
+                    <span class="w-9 h-9 rounded-full bg-[#99CDD8]/40 flex items-center justify-center text-[#4B554C] shrink-0 border border-[#99CDD8]">
+                        <svg class="w-4.5 h-4.5 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                    </span>
+                    <div class="min-w-0 flex-1">
+                        <div class="text-[10px] font-mono uppercase tracking-wider text-[#657166] font-bold">Diagnostic Tier</div>
+                        <select name="priority" class="bg-transparent text-xs font-semibold text-[#4B554C] focus:outline-none w-full cursor-pointer pr-2">
+                            <option value="preventive" class="bg-white text-[#4B554C]">Routine Screening</option>
+                            <option value="family" class="bg-white text-[#4B554C]">Family History Check</option>
+                            <option value="clinical" class="bg-white text-[#4B554C]">Full Risk Dossier</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- CTA Button -->
+                <div class="px-3 py-1">
+                    <button type="submit" class="w-full btn-ink-pill py-3 text-xs tracking-wide flex items-center justify-center gap-2 shadow-md hover:scale-[1.02]">
+                        <span>Launch Screening</span>
+                        <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+    </section>
+
+    <!-- SECTION 2: "OUR CLINICAL DEPARTMENTS" (3-Column Layout from Template 2) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <div class="text-center max-w-2xl mx-auto space-y-3">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DAEBE3] border border-[#CFD6C4] text-[#4B554C] text-xs font-semibold shadow-sm">
+                <svg class="w-3.5 h-3.5 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
+                <span class="tracking-wider uppercase text-[10px] font-mono font-bold">Specialized Clinical Disciplines</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-bold text-[#4B554C] tracking-tight font-heading">
+                Clinical Diagnostic Departments
+            </h2>
+            <p class="text-sm text-[#657166] leading-relaxed">
+                Seamlessly uniting optical dermatoglyphics, endocrinology parameters, and machine intelligence.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+            
+            <!-- Department 1: Biometric Dermatology -->
+            <div class="bg-white/85 border border-[#CFD6C4] rounded-[28px] p-8 space-y-5 hover:border-[#99CDD8] transition-all duration-300 group shadow-soft-card hover:-translate-y-1">
+                <div class="w-14 h-14 rounded-2xl bg-[#DAEBE3] border border-[#CFD6C4] flex items-center justify-center text-[#4B554C] group-hover:scale-105 transition-transform duration-300">
+                    <svg class="w-7 h-7 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.346" />
+                    </svg>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-xl font-bold text-[#4B554C] font-heading group-hover:text-[#657166] transition">
+                        Biometric Dermatology
+                    </h3>
+                    <p class="text-xs text-[#657166] leading-relaxed">
+                        High-precision computer vision pipeline analyzing epidermal ridge count, minutiae terminations, and loop-whorl-arch classifications via calibrated OpenCV.
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-[#CFD6C4] flex items-center justify-between">
+                    <span class="text-[11px] font-mono text-[#657166] font-semibold">Automated Laplacian Variance</span>
+                    <a href="{{ url_for('technology_page') }}" class="text-xs font-bold text-[#4B554C] group-hover:underline flex items-center gap-1">
+                        <span>Details</span>
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Department 2: Cardiometabolic Risk Intelligence -->
+            <div class="bg-white/85 border border-[#CFD6C4] rounded-[28px] p-8 space-y-5 hover:border-[#99CDD8] transition-all duration-300 group shadow-soft-card hover:-translate-y-1">
+                <div class="w-14 h-14 rounded-2xl bg-[#FDE8D3] border border-[#F3C3B2]/50 flex items-center justify-center text-[#4B554C] group-hover:scale-105 transition-transform duration-300">
+                    <svg class="w-7 h-7 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                    </svg>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-xl font-bold text-[#4B554C] font-heading group-hover:text-[#657166] transition">
+                        Cardiometabolic Risk Intelligence
+                    </h3>
+                    <p class="text-xs text-[#657166] leading-relaxed">
+                        Platt-calibrated ensemble modeling synthesizing Age, BMI metrics, and genetic family predisposition into continuous, deterministic diagnostic probabilities.
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-[#CFD6C4] flex items-center justify-between">
+                    <span class="text-[11px] font-mono text-[#657166] font-semibold">5-Algorithm Ensemble</span>
+                    <a href="{{ url_for('model_benchmark_page') }}" class="text-xs font-bold text-[#4B554C] group-hover:underline flex items-center gap-1">
+                        <span>Benchmark</span>
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Department 3: Preventive Endocrinology -->
+            <div class="bg-white/85 border border-[#CFD6C4] rounded-[28px] p-8 space-y-5 hover:border-[#99CDD8] transition-all duration-300 group shadow-soft-card hover:-translate-y-1">
+                <div class="w-14 h-14 rounded-2xl bg-[#99CDD8]/30 border border-[#99CDD8] flex items-center justify-center text-[#4B554C] group-hover:scale-105 transition-transform duration-300">
+                    <svg class="w-7 h-7 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                    </svg>
+                </div>
+                <div class="space-y-2">
+                    <h3 class="text-xl font-bold text-[#4B554C] font-heading group-hover:text-[#657166] transition">
+                        Preventive Endocrinology Care
+                    </h3>
+                    <p class="text-xs text-[#657166] leading-relaxed">
+                        Automated patient-centric dietary intervention protocols, glycemic load scheduling, and clinical follow-up timelines generated instantly upon risk tier assignment.
+                    </p>
+                </div>
+                <div class="pt-4 border-t border-[#CFD6C4] flex items-center justify-between">
+                    <span class="text-[11px] font-mono text-[#657166] font-semibold">Dietary &amp; Lifestyle Regimens</span>
+                    <a href="{{ url_for('remidy') }}" class="text-xs font-bold text-[#4B554C] group-hover:underline flex items-center gap-1">
+                        <span>Protocols</span>
+                        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SECTION 3: REAL-TIME HARDWARE DIAGNOSTIC INTERFACE (Super-Soft Tranquil Console) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="bg-white/85 border border-[#CFD6C4] rounded-[32px] overflow-hidden shadow-soft-card relative">
+            
+            <!-- Terminal Header -->
+            <div class="px-6 py-4 border-b border-[#CFD6C4] bg-[#FAF9F6] flex items-center justify-between text-xs font-mono">
+                <div class="flex items-center space-x-3">
+                    <span class="w-3 h-3 rounded-full bg-[#F3C3B2]"></span>
+                    <span class="w-3 h-3 rounded-full bg-[#FDE8D3]"></span>
+                    <span class="w-3 h-3 rounded-full bg-[#99CDD8]"></span>
+                    <span class="text-[#4B554C] font-bold ml-2">CAREPLUS DIAGNOSTIC CONSOLE // FD-OPTICAL-2400</span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span class="px-3 py-1 rounded-full bg-[#DAEBE3] border border-[#CFD6C4] text-[#4B554C] flex items-center gap-1.5 text-[11px]">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                        <span class="font-bold">SENSOR ONLINE</span>
+                    </span>
+                    <span class="text-[#657166] hidden sm:inline text-[11px]">PORT: 5005 &bull; PROTOCOL 3.1</span>
+                </div>
+            </div>
+
+            <!-- Terminal Body -->
+            <div class="p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-white/70">
+                
+                <!-- Left: Biometric Optical HUD Scanner -->
+                <div class="lg:col-span-5 flex flex-col items-center justify-center p-8 rounded-[24px] bg-[#FAF9F6] border border-[#CFD6C4] relative overflow-hidden group shadow-inner">
+                    
+                    <!-- Ambient Inner Glow -->
+                    <div class="absolute inset-0 bg-radial-gradient from-[#99CDD8]/20 via-transparent to-transparent pointer-events-none"></div>
+
+                    <!-- Precision Corner Brackets in Slate Sage -->
+                    <div class="absolute top-3 left-3 w-4 h-4 border-t-2 border-l-2 border-[#657166]/40 pointer-events-none"></div>
+                    <div class="absolute top-3 right-3 w-4 h-4 border-t-2 border-r-2 border-[#657166]/40 pointer-events-none"></div>
+                    <div class="absolute bottom-3 left-3 w-4 h-4 border-b-2 border-l-2 border-[#657166]/40 pointer-events-none"></div>
+                    <div class="absolute bottom-3 right-3 w-4 h-4 border-b-2 border-r-2 border-[#657166]/40 pointer-events-none"></div>
+
+                    <!-- High-Res SVG Fingerprint Graphic -->
+                    <svg class="w-48 h-60 text-[#657166]/80 filter drop-shadow-[0_2px_10px_rgba(101,113,102,0.15)] transition duration-300 group-hover:scale-105" viewBox="0 0 200 240" fill="none" stroke="currentColor">
+                        <path d="M100 20 C60 20 30 50 30 90 C30 140 40 190 70 220" stroke-width="2.5" stroke-linecap="round" opacity="0.3" stroke="#657166" />
+                        <path d="M100 35 C70 35 45 60 45 95 C45 135 52 180 80 210" stroke-width="2.5" stroke-linecap="round" opacity="0.5" stroke="#657166" />
+                        <path d="M100 50 C80 50 60 70 60 100 C60 135 68 175 90 200" stroke-width="2.5" stroke-linecap="round" opacity="0.7" stroke="#4B554C" />
+                        <path d="M100 65 C88 65 75 80 75 105 C75 140 85 170 100 190" stroke-width="2.5" stroke-linecap="round" opacity="1.0" stroke="#4B554C" />
+                        <path d="M100 80 C93 80 88 88 88 105 C88 135 95 160 105 180" stroke-width="2.5" stroke-linecap="round" stroke="#657166" />
+                        <path d="M100 95 C98 95 96 100 96 108 C96 125 102 145 110 165" stroke-width="2.5" stroke-linecap="round" stroke="#4B554C" />
+                        <!-- Minutiae Detection Targets -->
+                        <circle cx="88" cy="105" r="4" fill="#99CDD8" class="animate-ping" opacity="0.75" />
+                        <circle cx="88" cy="105" r="3" fill="#99CDD8" />
+                        <circle cx="105" cy="180" r="4" fill="#F3C3B2" class="animate-ping" opacity="0.75" />
+                        <circle cx="105" cy="180" r="3" fill="#F3C3B2" />
+                        <circle cx="100" cy="65" r="3" fill="#657166" />
+                    </svg>
+
+                    <!-- Quality Tag in Pale Mint -->
+                    <div class="mt-4 px-3.5 py-1.5 rounded-full bg-white border border-[#CFD6C4] text-[#4B554C] text-[11px] font-mono flex items-center gap-1.5 shadow-sm">
+                        <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                        <span>Ridge Quality: 98.4% (Certified Sharp)</span>
+                    </div>
+                </div>
+
+                <!-- Right: Telemetry Diagnostic Metrics -->
+                <div class="lg:col-span-7 space-y-6">
+                    
+                    <div>
+                        <div class="text-xs font-mono text-[#657166] uppercase tracking-widest flex items-center gap-1.5 font-bold">
+                            <svg class="w-4 h-4 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23.693l-1.57-.393m15.6 0l1.4 3.5A2.25 2.25 0 0119 21.75H5a2.25 2.25 0 01-2.2-2.95l1.4-3.5" /></svg>
+                            <span>Epidermal Biometric Telemetry</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-[#4B554C] tracking-tight mt-1 font-heading">
+                            Multimodal Ridge &amp; Clinical Synthesis
+                        </h3>
+                    </div>
+
+                    <!-- Metrics Table Grid with Soft Badges -->
+                    <div class="grid grid-cols-2 gap-3.5 text-xs font-mono">
+                        <div class="p-4 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4]">
+                            <span class="text-[#657166] text-[11px] block">Ridge Density</span>
+                            <span class="text-[#4B554C] font-bold text-base mt-1 block">16.5 ridges/cm</span>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4]">
+                            <span class="text-[#657166] text-[11px] block">Pattern Classification</span>
+                            <span class="text-[#4B554C] font-bold text-base mt-1 block">Ulnar Loop (94%)</span>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4]">
+                            <span class="text-[#657166] text-[11px] block">Laplacian Focus Index</span>
+                            <span class="text-[#4B554C] font-bold text-base mt-1 block">142.8 (Optimal)</span>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4]">
+                            <span class="text-[#657166] text-[11px] block">Minutiae Core Points</span>
+                            <span class="text-[#4B554C] font-bold text-base mt-1 block">42 Detected</span>
+                        </div>
+                    </div>
+
+                    <!-- Stratified Risk Score Indicator -->
+                    <div class="p-5 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] space-y-2.5">
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="font-mono text-[#657166] flex items-center gap-1.5 font-bold">
+                                <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                                <span>Continuous Risk Stratification</span>
+                            </span>
+                            <span class="font-bold text-[#4B554C] font-mono text-sm">LOWER ESTIMATED RISK (6.8 / 100)</span>
+                        </div>
+                        <!-- Progress bar with gradient -->
+                        <div class="w-full h-3 rounded-full bg-white border border-[#CFD6C4] overflow-hidden p-0.5">
+                            <div class="h-full bg-gradient-to-r from-[#99CDD8] via-[#DAEBE3] to-[#CFD6C4] rounded-full" style="width: 14%;"></div>
+                        </div>
+                        <div class="flex justify-between text-[10px] font-mono text-[#657166] pt-1 font-semibold">
+                            <span>0% Low Baseline</span>
+                            <span>40% Intermediate Tier</span>
+                            <span>70%+ High Alert</span>
+                        </div>
+                    </div>
+
+                    <!-- Quick Action -->
+                    <div class="pt-2 flex items-center justify-between border-t border-[#CFD6C4]">
+                        <span class="text-xs text-[#657166]">Ready to perform an automated clinical screening?</span>
+                        <a href="{{ url_for('upload_page') }}" class="btn-ink-pill px-6 py-2.5 text-xs">
+                            <span>Begin Screening &rarr;</span>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SECTION 4: KEY ARCHITECTURAL METRICS: 4-Column Grid in Soft Palette -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Metric 1: Accuracy -->
+            <div class="bg-white/85 border border-[#CFD6C4] rounded-[24px] p-6 relative overflow-hidden group hover:border-[#99CDD8] transition shadow-soft-card">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-mono font-bold text-[#657166] uppercase tracking-wider">Ensemble Model</span>
+                    <span class="w-9 h-9 rounded-2xl bg-[#DAEBE3] border border-[#CFD6C4] flex items-center justify-center text-[#4B554C]">
+                        <svg class="w-4 h-4 text-emerald-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                    </span>
+                </div>
+                <div class="text-4xl font-bold font-heading text-[#4B554C]">
+                    99.5%
+                </div>
+                <div class="text-xs font-semibold text-[#4B554C] mt-2">Clinical Classification Accuracy</div>
+                <p class="text-xs text-[#657166] mt-1 leading-relaxed">
+                    10-fold cross-validated on diverse demographic cohorts.
+                </p>
+            </div>
+
+            <!-- Metric 2: Latency -->
+            <div class="bg-white/85 border border-[#CFD6C4] rounded-[24px] p-6 relative overflow-hidden group hover:border-[#99CDD8] transition shadow-soft-card">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-mono font-bold text-[#657166] uppercase tracking-wider">Inference Speed</span>
+                    <span class="w-9 h-9 rounded-2xl bg-[#FDE8D3] border border-[#F3C3B2]/50 flex items-center justify-center text-[#4B554C]">
+                        <svg class="w-4 h-4 text-amber-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg>
+                    </span>
+                </div>
+                <div class="text-4xl font-bold font-heading text-[#4B554C]">
+                    &lt; 1.2s
+                </div>
+                <div class="text-xs font-semibold text-[#4B554C] mt-2">Diagnostic Inference Latency</div>
+                <p class="text-xs text-[#657166] mt-1 leading-relaxed">
+                    Instant on-device biometric extraction &amp; model inference.
+                </p>
+            </div>
+
+            <!-- Metric 3: Non-Invasive -->
+            <div class="bg-white/85 border border-[#CFD6C4] rounded-[24px] p-6 relative overflow-hidden group hover:border-[#99CDD8] transition shadow-soft-card">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-mono font-bold text-[#657166] uppercase tracking-wider">Patient Experience</span>
+                    <span class="w-9 h-9 rounded-2xl bg-[#99CDD8]/30 border border-[#99CDD8] flex items-center justify-center text-[#4B554C]">
+                        <svg class="w-4 h-4 text-sky-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    </span>
+                </div>
+                <div class="text-4xl font-bold font-heading text-[#4B554C]">
+                    0 Blood
+                </div>
+                <div class="text-xs font-semibold text-[#4B554C] mt-2">Non-Invasive Diagnostic Protocol</div>
+                <p class="text-xs text-[#657166] mt-1 leading-relaxed">
+                    Zero skin punctures, needle phobia, or biohazardous lancets.
+                </p>
+            </div>
+
+            <!-- Metric 4: Deterministic -->
+            <div class="bg-white/85 border border-[#CFD6C4] rounded-[24px] p-6 relative overflow-hidden group hover:border-[#99CDD8] transition shadow-soft-card">
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-mono font-bold text-[#657166] uppercase tracking-wider">Auditability</span>
+                    <span class="w-9 h-9 rounded-2xl bg-[#F3C3B2]/30 border border-[#F3C3B2] flex items-center justify-center text-[#4B554C]">
+                        <svg class="w-4 h-4 text-rose-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z" /></svg>
+                    </span>
+                </div>
+                <div class="text-4xl font-bold font-heading text-[#4B554C]">
+                    100%
+                </div>
+                <div class="text-xs font-semibold text-[#4B554C] mt-2">Deterministic Reproducibility</div>
+                <p class="text-xs text-[#657166] mt-1 leading-relaxed">
+                    Auditable decision paths with SHAP feature factor weights.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 5: 4-STAGE ARCHITECTURAL PIPELINE (Bento Grid) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <div class="text-center max-w-2xl mx-auto space-y-3">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DAEBE3] border border-[#CFD6C4] text-[#4B554C] text-xs font-semibold shadow-sm">
+                <svg class="w-3.5 h-3.5 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-.778.099-1.533.284-2.253" /></svg>
+                <span class="tracking-wider uppercase text-[10px] font-mono font-bold">End-to-End System Workflow</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-bold text-[#4B554C] tracking-tight font-heading">
+                Four-Stage Screening Pipeline
+            </h2>
+            <p class="text-sm text-[#657166] leading-relaxed">
+                From raw epidermal optical capture to stratified clinical decision support.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- Stage 1 -->
+            <div class="bg-white/85 border border-[#CFD6C4] rounded-[24px] p-6 space-y-4 relative group hover:border-[#99CDD8] transition shadow-soft-card">
+                <div class="flex items-center justify-between">
+                    <span class="text-2xl font-bold font-mono text-[#4B554C]">01</span>
+                    <span class="w-9 h-9 rounded-2xl bg-[#DAEBE3] border border-[#CFD6C4] flex items-center justify-center text-[#4B554C] group-hover:scale-110 transition shadow-sm">
+                        <svg class="w-4 h-4 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" /><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" /></svg>
+                    </span>
+                </div>
+                <div>
+                    <h3 class="text-base font-bold text-[#4B554C] font-heading">Biometric Acquisition</h3>
+                    <p class="text-xs text-[#657166] mt-2 leading-relaxed">
+                        High-resolution optical capture of dermal ridge patterns. Automated OpenCV Laplacian variance filters reject blurred scans immediately.
+                    </p>
+                </div>
+                <div class="pt-2 border-t border-[#CFD6C4] flex items-center justify-between text-[11px] font-mono text-[#4B554C]">
+                    <span>Input: RAW JPEG/PNG</span>
+                    <span>Blur: &gt; 50.0</span>
+                </div>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="bg-white/85 border border-[#CFD6C4] rounded-[24px] p-6 space-y-4 relative group hover:border-[#99CDD8] transition shadow-soft-card">
+                <div class="flex items-center justify-between">
+                    <span class="text-2xl font-bold font-mono text-[#4B554C]">02</span>
+                    <span class="w-9 h-9 rounded-2xl bg-[#FDE8D3] border border-[#F3C3B2]/50 flex items-center justify-center text-[#4B554C] group-hover:scale-110 transition shadow-sm">
+                        <svg class="w-4 h-4 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 01-.659 1.591l-5.432 5.432a2.25 2.25 0 00-.659 1.591v2.927a2.25 2.25 0 01-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 00-.659-1.591L3.659 7.409A2.25 2.25 0 013 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0112 3z" /></svg>
+                    </span>
+                </div>
+                <div>
+                    <h3 class="text-base font-bold text-[#4B554C] font-heading">5-Stage Computer Vision</h3>
+                    <p class="text-xs text-[#657166] mt-2 leading-relaxed">
+                        CLAHE contrast equalization, Otsu adaptive binarization, morphological filtering, and Zhang-Suen skeletonization extract ridge counts and minutiae.
+                    </p>
+                </div>
+                <div class="pt-2 border-t border-[#CFD6C4] flex items-center justify-between text-[11px] font-mono text-[#4B554C]">
+                    <span>Method: CLAHE + Thinning</span>
+                    <span>Output: Vectors</span>
+                </div>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="bg-white/85 border border-[#CFD6C4] rounded-[24px] p-6 space-y-4 relative group hover:border-[#99CDD8] transition shadow-soft-card">
+                <div class="flex items-center justify-between">
+                    <span class="text-2xl font-bold font-mono text-[#4B554C]">03</span>
+                    <span class="w-9 h-9 rounded-2xl bg-[#99CDD8]/30 border border-[#99CDD8] flex items-center justify-center text-[#4B554C] group-hover:scale-110 transition shadow-sm">
+                        <svg class="w-4 h-4 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" /></svg>
+                    </span>
+                </div>
+                <div>
+                    <h3 class="text-base font-bold text-[#4B554C] font-heading">Clinical Vitals Fusion</h3>
+                    <p class="text-xs text-[#657166] mt-2 leading-relaxed">
+                        Biometric features are locked and fused with patient Age, BMI, genetic family history, blood pressure, and metabolic profile into a single feature matrix.
+                    </p>
+                </div>
+                <div class="pt-2 border-t border-[#CFD6C4] flex items-center justify-between text-[11px] font-mono text-[#4B554C]">
+                    <span>Features: 7 Core</span>
+                    <span>Scaling: Robust</span>
+                </div>
+            </div>
+
+            <!-- Stage 4 -->
+            <div class="bg-white/85 border border-[#CFD6C4] rounded-[24px] p-6 space-y-4 relative group hover:border-[#99CDD8] transition shadow-soft-card">
+                <div class="flex items-center justify-between">
+                    <span class="text-2xl font-bold font-mono text-[#4B554C]">04</span>
+                    <span class="w-9 h-9 rounded-2xl bg-[#F3C3B2]/30 border border-[#F3C3B2] flex items-center justify-center text-[#4B554C] group-hover:scale-110 transition shadow-sm">
+                        <svg class="w-4 h-4 text-[#4B554C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                    </span>
+                </div>
+                <div>
+                    <h3 class="text-base font-bold text-[#4B554C] font-heading">Diagnostic Dossier</h3>
+                    <p class="text-xs text-[#657166] mt-2 leading-relaxed">
+                        Random Forest ensemble produces a stratified continuous probability score (0-100%) paired with personalized dietary protocols and medical follow-up guidance.
+                    </p>
+                </div>
+                <div class="pt-2 border-t border-[#CFD6C4] flex items-center justify-between text-[11px] font-mono text-[#4B554C]">
+                    <span>Score: Continuous %</span>
+                    <span>Report: Print Ready</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 6: MODEL BENCHMARK MATRIX (Comparative Performance) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white/85 border border-[#CFD6C4] rounded-[32px] p-8 sm:p-10 space-y-8 shadow-soft-card">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div class="space-y-2">
+                    <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DAEBE3] border border-[#CFD6C4] text-[#4B554C] text-xs font-semibold shadow-sm">
+                        <svg class="w-3.5 h-3.5 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
+                        <span class="tracking-wider uppercase text-[10px] font-mono font-bold">Benchmark Matrix</span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-[#4B554C] font-heading">
+                        Candidate Classifier Evaluation
+                    </h2>
+                    <p class="text-xs sm:text-sm text-[#657166] max-w-xl">
+                        Cross-validated on 10,000+ multimodal patient profiles comparing Tree ensembles, SVM, and KNN.
+                    </p>
+                </div>
+
+                <a href="{{ url_for('model_benchmark_page') }}" class="text-xs font-mono text-[#4B554C] hover:underline inline-flex items-center gap-1 font-bold">
+                    <span>Full Analytical Benchmark Matrix</span>
+                    <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                </a>
+            </div>
+
+            <!-- Model Bars in Soft Palette -->
+            <div class="space-y-4 text-xs font-mono">
+                
+                <!-- Random Forest -->
+                <div class="p-4 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-[#4B554C] flex items-center gap-2">
+                            <span>Random Forest Ensemble</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] bg-[#DAEBE3] text-[#4B554C] border border-[#CFD6C4] font-bold">CHAMPION</span>
+                        </span>
+                        <span class="text-[#4B554C] font-bold">100.0% Test &bull; 99.1% CV</span>
+                    </div>
+                    <div class="w-full h-2 rounded-full bg-white border border-[#CFD6C4] overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-[#99CDD8] via-[#DAEBE3] to-[#CFD6C4] rounded-full" style="width: 100%;"></div>
+                    </div>
+                </div>
+
+                <!-- Gradient Boosting -->
+                <div class="p-4 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[#4B554C]">Gradient Boosting Classifier</span>
+                        <span class="text-[#657166] font-semibold">99.0% Test &bull; 99.2% CV</span>
+                    </div>
+                    <div class="w-full h-2 rounded-full bg-white border border-[#CFD6C4] overflow-hidden">
+                        <div class="h-full bg-[#DAEBE3] rounded-full" style="width: 99%;"></div>
+                    </div>
+                </div>
+
+                <!-- Decision Tree -->
+                <div class="p-4 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[#657166]">Decision Tree</span>
+                        <span class="text-[#4B554C]">92.0% Test &bull; 91.8% CV</span>
+                    </div>
+                    <div class="w-full h-2 rounded-full bg-white border border-[#CFD6C4] overflow-hidden">
+                        <div class="h-full bg-[#CFD6C4] rounded-full" style="width: 92%;"></div>
+                    </div>
+                </div>
+
+                <!-- KNN -->
+                <div class="p-4 rounded-2xl bg-[#FAF9F6] border border-[#CFD6C4] space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[#657166]">K-Nearest Neighbors (KNN)</span>
+                        <span class="text-[#4B554C]">91.0% Test &bull; 90.4% CV</span>
+                    </div>
+                    <div class="w-full h-2 rounded-full bg-white border border-[#CFD6C4] overflow-hidden">
+                        <div class="h-full bg-[#FDE8D3] rounded-full" style="width: 91%;"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION 7: CORPORATE CALL TO ACTION BANNER -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-r from-[#DAEBE3]/90 via-white to-[#FDE8D3]/80 border border-[#CFD6C4] rounded-[32px] p-10 sm:p-14 text-center space-y-6 relative overflow-hidden shadow-soft-card">
+            
+            <div class="max-w-2xl mx-auto space-y-3 relative z-10">
+                <span class="text-xs font-mono font-bold text-[#657166] uppercase tracking-widest">DEPLOYED OBSERVATIONAL PROTOCOL</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-[#4B554C] tracking-tight font-heading">
+                    Initiate Clinical Screening Now
+                </h2>
+                <p class="text-sm text-[#657166] leading-relaxed">
+                    Capture epidermal minutiae, fuse with clinical indicators, and produce an auditable diagnostic report in seconds.
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 relative z-10 pt-2">
+                <a href="{{ url_for('upload_page') }}" class="btn-ink-pill w-full sm:w-auto px-8 py-3.5 text-xs sm:text-sm font-bold shadow-md hover:scale-[1.02] flex items-center justify-center gap-2">
+                    <span>Start Patient Screening</span>
+                    <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                </a>
+                <a href="{{ url_for('about_page') }}" class="btn-soft-pill w-full sm:w-auto px-6 py-3.5 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                    <span>Scientific Documentation</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+{% endblock %}

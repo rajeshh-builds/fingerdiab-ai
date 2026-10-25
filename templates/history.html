@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Patient Diagnostic Records &bull; FingerDiab AI{% endblock %}
+
+{% block content %}
+<div class="py-10 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-8">
+
+    <!-- Header & Filter Actions -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#CFD6C4]/80 pb-6">
+        <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#DAEBE3] border border-[#CFD6C4] text-[11px] font-bold text-[#4B554C] uppercase tracking-wider font-mono">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#657166]"></span>
+                <span>Audit Trail &bull; Clinical Records</span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-[#4B554C] mt-2.5 font-heading tracking-tight">
+                Patient Diagnostic Records
+            </h1>
+            <p class="text-xs sm:text-sm text-[#657166] mt-1">
+                Historical record ledger of multimodal biometric scans, clinical parameters, and risk stratification results.
+            </p>
+        </div>
+
+        <div class="flex items-center space-x-3">
+            <button onclick="window.print()" class="px-4 py-2.5 rounded-full bg-white/90 hover:bg-[#DAEBE3] text-[#4B554C] text-xs font-semibold border border-[#CFD6C4] transition flex items-center gap-2 shadow-sm">
+                <svg class="w-4 h-4 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.72 13.829c-.24-1.076-.672-2.126-1.282-3.08a10.024 10.024 0 0110.124-4.838m-1.42 12.012A9.97 9.97 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                </svg>
+                <span>Print Ledger</span>
+            </button>
+            <a href="{{ url_for('upload_page') }}" class="btn-ink-pill px-5 py-2.5 text-xs flex items-center gap-2 shadow-md">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+                <span>New Screening</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Records Table Card -->
+    <div class="bg-white/90 rounded-[28px] border border-[#CFD6C4]/80 shadow-[0_8px_30px_rgb(0,0,0,0.03)] overflow-hidden">
+
+        {% if records and records|length > 0 %}
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-[#4B554C]">
+                    <thead class="bg-[#DAEBE3]/50 border-b border-[#CFD6C4]/80 text-[11px] font-mono uppercase tracking-wider text-[#657166]">
+                        <tr>
+                            <th class="px-5 py-3.5">Dossier ID</th>
+                            <th class="px-5 py-3.5">Patient Name</th>
+                            <th class="px-5 py-3.5 text-center">Age / BMI</th>
+                            <th class="px-5 py-3.5 text-center">Ridge / Archetype</th>
+                            <th class="px-5 py-3.5 text-center">Risk Tier</th>
+                            <th class="px-5 py-3.5 text-center">Risk Score</th>
+                            <th class="px-5 py-3.5 text-center">Timestamp</th>
+                            <th class="px-5 py-3.5 text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#CFD6C4]/50">
+                        {% for r in records %}
+                            <tr class="hover:bg-[#DAEBE3]/20 transition-colors">
+                                <td class="px-5 py-4 font-mono font-bold text-[#4B554C]">
+                                    #FD-{{ "%04d"|format(r.id) }}
+                                </td>
+                                <td class="px-5 py-4 font-semibold text-[#4B554C]">
+                                    {{ r.patient_name }}
+                                </td>
+                                <td class="px-5 py-4 text-center font-mono text-[#657166]">
+                                    {{ r.age }} yrs &bull; {{ r.bmi }} kg/m²
+                                </td>
+                                <td class="px-5 py-4 text-center font-mono text-[#657166]">
+                                    <span class="inline-flex items-center gap-1 font-semibold text-[#4B554C]">
+                                        {{ r.ridge_count }} ridges
+                                    </span>
+                                    <span class="text-[10px] text-[#657166] block capitalize">({{ r.fingerprint_type }})</span>
+                                </td>
+                                <td class="px-5 py-4 text-center">
+                                    {% if r.diabetes_risk|lower == 'high' %}
+                                        <span class="px-2.5 py-1 rounded-full text-[11px] font-bold uppercase bg-[#F3C3B2]/60 text-[#4B554C] border border-[#F3C3B2]">
+                                            Elevated Risk
+                                        </span>
+                                    {% elif r.diabetes_risk|lower == 'medium' %}
+                                        <span class="px-2.5 py-1 rounded-full text-[11px] font-bold uppercase bg-[#FDE8D3] text-[#4B554C] border border-[#CFD6C4]">
+                                            Intermediate
+                                        </span>
+                                    {% else %}
+                                        <span class="px-2.5 py-1 rounded-full text-[11px] font-bold uppercase bg-[#DAEBE3] text-emerald-900 border border-[#CFD6C4]">
+                                            Lower Risk
+                                        </span>
+                                    {% endif %}
+                                </td>
+                                <td class="px-5 py-4 text-center font-mono font-bold text-[#4B554C]">
+                                    {% if r.risk_score %}
+                                        {{ "%.1f"|format(r.risk_score) }} <span class="text-[10px] text-[#657166] font-normal">/ 100</span>
+                                    {% else %}
+                                        {{ r.confidence }}%
+                                    {% endif %}
+                                </td>
+                                <td class="px-5 py-4 text-center font-mono text-[#657166] text-[11px]">
+                                    {{ r.created_at[:16] if r.created_at else 'Recent' }}
+                                </td>
+                                <td class="px-5 py-4 text-right">
+                                    <a href="{{ url_for('result_page', pred_id=r.id) }}" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white hover:bg-[#DAEBE3] text-[#4B554C] font-semibold text-[11px] border border-[#CFD6C4] transition shadow-sm">
+                                        <span>View Dossier</span>
+                                        <svg class="w-3.5 h-3.5 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="text-center py-16 px-4 space-y-3">
+                <div class="w-14 h-14 rounded-full bg-[#DAEBE3] border border-[#CFD6C4] text-[#4B554C] flex items-center justify-center mx-auto">
+                    <svg class="w-7 h-7 text-[#657166]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                    </svg>
+                </div>
+                <h3 class="text-base font-bold text-[#4B554C] font-heading">No Diagnostic Records Logged Yet</h3>
+                <p class="text-[#657166] text-xs max-w-sm mx-auto">Scanned patient assessments will be automatically audited and stored here for clinical longitudinal tracking.</p>
+                <div class="pt-3">
+                    <a href="{{ url_for('upload_page') }}" class="btn-ink-pill px-5 py-2.5 text-xs inline-flex items-center gap-2 shadow-md">
+                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        <span>Perform First Screening</span>
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+
+</div>
+{% endblock %}

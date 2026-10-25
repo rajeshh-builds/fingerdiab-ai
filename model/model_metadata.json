@@ -1,0 +1,204 @@
+{
+  "model_name": "RandomForestClassifier",
+  "model_version": "fingerdiab-rf-v1.2.0",
+  "framework": "scikit-learn",
+  "training_timestamp": "2026-10-07T21:50:07.490800",
+  "dataset_file": "fingerprint_diabetes_dataset.csv",
+  "sample_count": 1000,
+  "features": [
+    "Fingerprint_Type",
+    "Ridge_Count",
+    "Age",
+    "BMI",
+    "Family_History"
+  ],
+  "target_classes": [
+    "low",
+    "medium",
+    "high"
+  ],
+  "risk_score_scale": "0.0 - 100.0",
+  "benchmark_metrics": {
+    "random_forest": {
+      "accuracy": 0.995,
+      "cv_mean_accuracy": 0.9887500000000001,
+      "cv_std_accuracy": 0.007288689868556645,
+      "precision_macro": 0.9955555555555556,
+      "recall_macro": 0.9957264957264957,
+      "f1_macro": 0.995612325900267,
+      "f1_weighted": 0.9950006494912319,
+      "roc_auc_ovr": 1.0,
+      "training_time_sec": 2.0942,
+      "confusion_matrix": [
+        [
+          74,
+          0,
+          0
+        ],
+        [
+          1,
+          77,
+          0
+        ],
+        [
+          0,
+          0,
+          48
+        ]
+      ]
+    },
+    "gradient_boosting": {
+      "accuracy": 0.995,
+      "cv_mean_accuracy": 0.9862500000000001,
+      "cv_std_accuracy": 0.012119199643540822,
+      "precision_macro": 0.9957805907172995,
+      "recall_macro": 0.9954954954954954,
+      "f1_macro": 0.995609284053324,
+      "f1_weighted": 0.9949989167641579,
+      "roc_auc_ovr": 0.9999292212406967,
+      "training_time_sec": 5.0328,
+      "confusion_matrix": [
+        [
+          73,
+          1,
+          0
+        ],
+        [
+          0,
+          78,
+          0
+        ],
+        [
+          0,
+          0,
+          48
+        ]
+      ]
+    },
+    "logistic_regression": {
+      "accuracy": 0.775,
+      "cv_mean_accuracy": 0.7849999999999999,
+      "cv_std_accuracy": 0.018791620472966147,
+      "precision_macro": 0.7804512522308501,
+      "recall_macro": 0.7852997227997228,
+      "f1_macro": 0.7824047266722426,
+      "f1_weighted": 0.7750599948529885,
+      "roc_auc_ovr": 0.93150273797653,
+      "training_time_sec": 0.135,
+      "confusion_matrix": [
+        [
+          58,
+          16,
+          0
+        ],
+        [
+          12,
+          56,
+          10
+        ],
+        [
+          0,
+          7,
+          41
+        ]
+      ]
+    },
+    "decision_tree": {
+      "accuracy": 0.995,
+      "cv_mean_accuracy": 0.99,
+      "cv_std_accuracy": 0.005000000000000021,
+      "precision_macro": 0.9957805907172995,
+      "recall_macro": 0.9954954954954954,
+      "f1_macro": 0.995609284053324,
+      "f1_weighted": 0.9949989167641579,
+      "roc_auc_ovr": 0.9963816275291685,
+      "training_time_sec": 0.0337,
+      "confusion_matrix": [
+        [
+          73,
+          1,
+          0
+        ],
+        [
+          0,
+          78,
+          0
+        ],
+        [
+          0,
+          0,
+          48
+        ]
+      ]
+    },
+    "svm": {
+      "accuracy": 0.9,
+      "cv_mean_accuracy": 0.8762500000000001,
+      "cv_std_accuracy": 0.010752906583803281,
+      "precision_macro": 0.9065945165945166,
+      "recall_macro": 0.9066470316470316,
+      "f1_macro": 0.9051062400268749,
+      "f1_weighted": 0.9001579743008316,
+      "roc_auc_ovr": 0.9801564750941908,
+      "training_time_sec": 0.5861,
+      "confusion_matrix": [
+        [
+          63,
+          11,
+          0
+        ],
+        [
+          3,
+          71,
+          4
+        ],
+        [
+          0,
+          2,
+          46
+        ]
+      ]
+    },
+    "knn": {
+      "accuracy": 0.91,
+      "cv_mean_accuracy": 0.8887499999999999,
+      "cv_std_accuracy": 0.024173849507267142,
+      "precision_macro": 0.9097128505023241,
+      "recall_macro": 0.9187889812889812,
+      "f1_macro": 0.9136417007649884,
+      "f1_weighted": 0.9096046255114749,
+      "roc_auc_ovr": 0.9787332880179623,
+      "training_time_sec": 0.0593,
+      "confusion_matrix": [
+        [
+          67,
+          7,
+          0
+        ],
+        [
+          5,
+          68,
+          5
+        ],
+        [
+          0,
+          1,
+          47
+        ]
+      ]
+    }
+  },
+  "calibration_metrics": {
+    "brier_score_before": 0.015812365223528035,
+    "brier_score_after": 0.0067825683163608924,
+    "log_loss_before": 0.1455661550884749,
+    "log_loss_after": 0.04874939873437736,
+    "calibration_improved": true
+  },
+  "hyperparameters": {
+    "n_estimators": 100,
+    "max_depth": 10,
+    "min_samples_split": 4,
+    "random_state": 42
+  }
+}
